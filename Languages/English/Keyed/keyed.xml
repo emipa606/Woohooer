@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Whohooer.NotFertile>{0} is not fertile</Whohooer.NotFertile>
+  <Whohooer.Version>Installed mod-version: {0}</Whohooer.Version>
+  <Whohooer.Credit>Fertility Starts at 14 in base game
+The base game forces a second dice role on your pawns age group
+That's all, thanks for playing. -Alice.
+
+Source Code Available at https://github.com/emipa606/Woohooer</Whohooer.Credit>
+  <Whohooer.woohooChildChance>How likely do we roll for pregnancy when wohooing: {0}</Whohooer.woohooChildChance>
+  <Whohooer.woohooBabyChildChance>How likely we are to get pregnant when trying for baby: {0}</Whohooer.woohooBabyChildChance>
+  <Whohooer.sameGender>Two people of the same gender can get pregnant</Whohooer.sameGender>
+  <Whohooer.allowAIWoohoo>Pawns can WooHoo autonomously</Whohooer.allowAIWoohoo>
+  <Whohooer.minAITicks>Time until a pawn can autonomously woohoo again (Plus/Minus 10%): {0}. </Whohooer.minAITicks>
+  <Whohooer.familyWeight>How hard should directly related pawns try to avoid woohoo (0% dont care, 100% always avoid): {0}</Whohooer.familyWeight>
+  <Whohooer.lovedItChance>Chance to apply moodlet for whohooing: {0}</Whohooer.lovedItChance>
+</LanguageData>
