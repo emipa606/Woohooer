@@ -6,42 +6,42 @@ namespace DarkIntentionsWoohoo;
 
 internal static class PawnHelper
 {
-    public static bool is_animal(Pawn pawn)
+    public static bool IsHumanoid(this Pawn pawn)
     {
-        return pawn.RaceProps.Animal;
+        return pawn.RaceProps.Humanlike;
     }
 
-    public static bool is_human(Pawn pawn)
+    public static bool IsSameRaceHumanoid(Pawn pawn, Pawn mate)
     {
-        return pawn.RaceProps.Humanlike && pawn.kindDef.race == ThingDefOf.Human;
+        return pawn.RaceProps.Humanlike && mate.RaceProps.Humanlike && pawn.kindDef.race == mate.kindDef.race;
     }
 
-    public static bool is_masochist(Pawn pawn)
+    public static bool IsMasochist(this Pawn pawn)
     {
         return pawn is { story.traits: { } } && pawn.story.traits.HasTrait(TraitDef.Named("Masochist"));
     }
 
-    public static bool is_psychopath(Pawn pawn)
+    public static bool IsPsychopath(this Pawn pawn)
     {
         return pawn is { story.traits: { } } && pawn.story.traits.HasTrait(TraitDefOf.Psychopath);
     }
 
-    public static bool is_bloodlust(Pawn pawn)
+    public static bool IsBloodlust(this Pawn pawn)
     {
         return pawn is { story.traits: { } } && pawn.story.traits.HasTrait(TraitDefOf.Bloodlust);
     }
 
-    public static bool is_brawler(Pawn pawn)
+    public static bool IsBrawler(this Pawn pawn)
     {
         return pawn is { story.traits: { } } && pawn.story.traits.HasTrait(TraitDefOf.Brawler);
     }
 
-    public static bool is_kind(Pawn pawn)
+    public static bool IsKind(this Pawn pawn)
     {
         return pawn is { story.traits: { } } && pawn.story.traits.HasTrait(TraitDefOf.Kind);
     }
 
-    public static bool IsNotWoohooing(Pawn mate)
+    public static bool IsNotWoohooing(this Pawn mate)
     {
         if (mate.CurJob == null)
         {
@@ -52,7 +52,7 @@ internal static class PawnHelper
                mate.CurJob.def != Constants.JobWooHoo_Baby && mate.CurJob.def != Constants.JobWooHooRecieve;
     }
 
-    public static bool isStranger(Pawn pawn, Pawn mate)
+    public static bool IsStranger(Pawn pawn, Pawn mate)
     {
         return pawn.guest == null && mate.guest != null;
     }

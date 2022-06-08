@@ -23,20 +23,27 @@ internal class WorkGiver_Woohoo_Baby : WorkGiver_Woohoo
             return false;
         }
 
+        var mate = t as Pawn;
+
+        if (!PawnHelper.IsSameRaceHumanoid(pawn, mate))
+        {
+            JobFailReason.Is("Whohooer.SameRace".Translate());
+            return false;
+        }
+
         if (!FertilityChecker.is_fertile(pawn))
         {
             JobFailReason.Is("Whohooer.NotFertile".Translate(pawn.Name.ToStringShort));
             return false;
         }
 
-        var other = t as Pawn;
-        if (FertilityChecker.is_fertile(other))
+        if (FertilityChecker.is_fertile(mate))
         {
             return FertilityChecker.is_FemaleForBabies(pawn) ||
-                   FertilityChecker.is_FemaleForBabies(other);
+                   FertilityChecker.is_FemaleForBabies(mate);
         }
 
-        JobFailReason.Is("Whohooer.NotFertile".Translate(other?.Name.ToStringShort));
+        JobFailReason.Is("Whohooer.NotFertile".Translate(mate?.Name.ToStringShort));
         return false;
     }
 }

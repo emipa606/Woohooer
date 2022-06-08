@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <Whohooer.NotFertile>{0} is not fertile</Whohooer.NotFertile>
+  <Whohooer.AlreadyWohooing>Someone is already wohooing</Whohooer.AlreadyWohooing>
+  <Whohooer.SameRace>Need to be the same species</Whohooer.SameRace>
+  <Whohooer.Humanoid>Both need to be humanoid</Whohooer.Humanoid>
+  <Whohooer.NoBed>No free bed</Whohooer.NoBed>
   <Whohooer.Version>Installed mod-version: {0}</Whohooer.Version>
   <Whohooer.Credit>Fertility Starts at 14 in base game
 The base game forces a second dice role on your pawns age group

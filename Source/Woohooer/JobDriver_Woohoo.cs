@@ -13,7 +13,7 @@ internal class JobDriver_Woohoo : JobDriver
     {
         if (!(TargetA != null) || TargetA.Thing == null || !(TargetA.Thing is Pawn mate) || !(TargetB != null) ||
             TargetB.Thing == null || !(TargetB.Thing is Building_Bed building_Bed) || pawn == null ||
-            !PawnHelper.is_human(pawn) || !PawnHelper.is_human(mate) || building_Bed.IsBurning())
+            !PawnHelper.IsSameRaceHumanoid(pawn, mate) || building_Bed.IsBurning())
         {
             Log.Error($"[{pawn?.Name}] can't woohoo right.");
             EndJobWith(JobCondition.Errored);
@@ -28,7 +28,7 @@ internal class JobDriver_Woohoo : JobDriver
         var hookupBedmanager = new HookupBedmanager(building_Bed);
         bool askSuccess;
         IEnumerable<Toil> first;
-        if (PawnHelper.IsNotWoohooing(mate))
+        if (mate.IsNotWoohooing())
         {
             pawn.records.Increment(Constants.CountAskedForWoohoo);
             mate.records.Increment(Constants.CountGotAskedToWooHoo);
@@ -67,12 +67,12 @@ internal class JobDriver_Woohoo : JobDriver
     private bool AskPartner(Pawn asker, Pawn mate)
     {
         return asker != null && mate != null &&
-               (JailHelper.IsThisJailLovin(asker, mate) || !PawnHelper.isStranger(asker, mate) || Rand.Bool);
+               (JailHelper.IsThisJailLovin(asker, mate) || !PawnHelper.IsStranger(asker, mate) || Rand.Bool);
     }
 
     public IEnumerable<Toil> MakeMyLoveToils(Pawn asker, Pawn mate)
     {
-        if (!PawnHelper.is_psychopath(asker) && PawnHelper.isStranger(asker, mate) &&
+        if (!asker.IsPsychopath() && PawnHelper.IsStranger(asker, mate) &&
             !JailHelper.IsThisJailLovin(asker, mate))
         {
             Toils_Interpersonal.TryRecruit(TargetIndex.A);
@@ -99,7 +99,7 @@ internal class JobDriver_Woohoo : JobDriver
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
         if (TargetA != null && TargetA.Thing is Pawn mate && TargetB != null && TargetB.Thing is Building_Bed t &&
-            pawn != null && PawnHelper.is_human(pawn) && PawnHelper.is_human(mate) && !t.IsBurning() &&
+            pawn != null && PawnHelper.IsSameRaceHumanoid(pawn, mate) && !t.IsBurning() &&
             pawn.mindState.canLovinTick < Find.TickManager.TicksGame)
         {
             return true;

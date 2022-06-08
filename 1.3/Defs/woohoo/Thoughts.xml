@@ -64,7 +64,7 @@
     <stages>
       <li>
         <label>Woohoo with a colonist</label>
-        <description>I Woohoo with the Colonist {0}, I liked it.</description>
+        <description>I Woohoo with {0}, I liked it.</description>
         <baseOpinionOffset>20</baseOpinionOffset>
       </li>
     </stages>
@@ -92,7 +92,7 @@
     <stages>
       <li>
         <label>kinky woohoo</label>
-        <description>{0}and I got kinky.</description>
+        <description>{0} and I got kinky.</description>
         <baseOpinionOffset>30</baseOpinionOffset>
       </li>
     </stages>

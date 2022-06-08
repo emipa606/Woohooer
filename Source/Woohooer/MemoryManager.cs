@@ -54,7 +54,7 @@ internal class MemoryManager
 
     private static void addEqualsMoodlets(Pawn pawn, Pawn mate)
     {
-        if (isKinky(pawn) && isKinky(mate) || PawnHelper.isStranger(pawn, mate))
+        if (isKinky(pawn) && isKinky(mate) || PawnHelper.IsStranger(pawn, mate))
         {
             addMemory(mate, WoohooKink);
             addMemoryOfOther(mate, WoohooKinkMemory, pawn);
@@ -78,17 +78,17 @@ internal class MemoryManager
 
     private static bool isKinky(Pawn pawn)
     {
-        return PawnHelper.is_bloodlust(pawn) || PawnHelper.is_psychopath(pawn) || PawnHelper.is_masochist(pawn);
+        return pawn.IsBloodlust() || pawn.IsPsychopath() || pawn.IsMasochist();
     }
 
     private static void addPrisonMoodlets(Pawn torturer, Pawn victim)
     {
         victim.records.Increment(Constants.HorrificMemories);
-        if (PawnHelper.is_bloodlust(torturer) || PawnHelper.is_psychopath(torturer))
+        if (torturer.IsBloodlust() || torturer.IsPsychopath())
         {
             addMemory(torturer, WoohooColonist);
         }
-        else if (PawnHelper.is_kind(torturer))
+        else if (torturer.IsKind())
         {
             addMemory(torturer, WoohooColonistRegret);
         }
@@ -97,7 +97,7 @@ internal class MemoryManager
             addMemory(torturer, WoohooNeutral);
         }
 
-        if (PawnHelper.is_masochist(victim))
+        if (victim.IsMasochist())
         {
             addMemory(victim, MasochistPrisonerWoohoo);
             addMemoryOfOther(victim, MasochistPrisonerWoohooMemory, torturer);
@@ -105,7 +105,7 @@ internal class MemoryManager
         }
 
         addMemory(victim, PrisonerWoohoo);
-        if (PawnHelper.is_psychopath(victim) || PawnHelper.is_bloodlust(victim))
+        if (victim.IsPsychopath() || victim.IsBloodlust())
         {
             addMemoryOfOther(victim, WoohooNeutral, torturer);
         }

@@ -20,27 +20,45 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
             return false;
         }
 
-        if (t is not Pawn pawn2 || pawn == pawn2 || !forced && !canAutoLove(pawn, pawn2) || pawn2.Downed ||
-            pawn2.Faction != pawn.Faction && (pawn2.guest == null || pawn2.Drafted) || !PawnHelper.is_human(pawn) ||
-            !PawnHelper.is_human(pawn2) || !PawnHelper.IsNotWoohooing(pawn) || !PawnHelper.IsNotWoohooing(pawn2))
+        if (t is not Pawn mate || pawn == mate || !forced && !canAutoLove(pawn, mate) || mate.Downed ||
+            mate.Faction != pawn.Faction && (mate.guest == null || mate.Drafted))
         {
             return false;
         }
 
-        if (ModsConfig.IdeologyActive && !BedUtility.WillingToShareBed(pawn, pawn2))
+        if (!pawn.IsHumanoid() || !mate.IsHumanoid())
+        {
+            JobFailReason.Is("Whohooer.Humanoid".Translate());
+            return false;
+        }
+
+        if (!mate.IsNotWoohooing() || !pawn.IsNotWoohooing())
+        {
+            JobFailReason.Is("Whohooer.AlreadyWohooing".Translate());
+            return false;
+        }
+
+        if (ModsConfig.IdeologyActive && !BedUtility.WillingToShareBed(pawn, mate))
         {
             JobFailReason.Is("IdeoligionForbids".Translate());
             return false;
         }
 
-        LocalTargetInfo target = pawn2;
+        LocalTargetInfo target = mate;
         if (!pawn.CanReserve(target, 1, -1, null, forced))
         {
             return false;
         }
 
-        bed = BetterBedFinder.DoBetterBedFinder(pawn, pawn2);
-        return bed != null;
+        bed = BetterBedFinder.DoBetterBedFinder(pawn, mate);
+
+        if (bed != null)
+        {
+            return true;
+        }
+
+        JobFailReason.Is("Whohooer.NoBed".Translate());
+        return false;
     }
 
     private bool canAutoLove(Pawn pawn, Pawn pawn2)
@@ -97,21 +115,21 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
             return null;
         }
 
-        var pawn2 = t as Pawn;
-        if (!PawnHelper.is_human(pawn) || !PawnHelper.is_human(pawn2))
+        var mate = t as Pawn;
+        if (!pawn.IsHumanoid() || !mate.IsHumanoid())
         {
             return null;
         }
 
-        if (IsMate(pawn, pawn2))
+        if (IsMate(pawn, mate) && PawnHelper.IsSameRaceHumanoid(pawn, mate))
         {
-            return new Job(Constants.JobWooHoo_Baby, pawn2, bed)
+            return new Job(Constants.JobWooHoo_Baby, mate, bed)
             {
                 count = 1
             };
         }
 
-        return new Job(Constants.JobWooHoo, pawn2, bed)
+        return new Job(Constants.JobWooHoo, mate, bed)
         {
             count = 1
         };

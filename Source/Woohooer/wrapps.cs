@@ -13,13 +13,13 @@ internal class wrapps
         [HarmonyPrefix]
         public static bool Prefix(Pawn mother, Pawn father)
         {
-            if (mother == null || !PawnHelper.is_human(mother))
+            if (mother == null || !mother.IsHumanoid())
             {
                 return true;
             }
 
             if (mother.guest is { IsPrisoner: true } && mother.Faction != Faction.OfPlayer && father != null &&
-                PawnHelper.is_human(father) && PawnHelper.is_kind(father))
+                father.IsHumanoid() && father.IsKind())
             {
                 mother.SetFaction(Faction.OfPlayer, father);
                 TaleRecorder.RecordTale(TaleDefOf.Recruited, father, mother);
@@ -41,7 +41,7 @@ internal class wrapps
         [HarmonyPostfix]
         public static void Postfix(Pawn mother, Pawn father)
         {
-            if (mother == null || !PawnHelper.is_human(mother))
+            if (mother == null || !mother.IsHumanoid())
             {
                 return;
             }

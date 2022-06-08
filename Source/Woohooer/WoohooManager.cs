@@ -18,13 +18,13 @@ internal static class WoohooManager
             initAction = NewFunction
         };
         t.AddEndCondition(() =>
-            PawnHelper.IsNotWoohooing(mate) && tick-- > 0 ? JobCondition.Ongoing : JobCondition.Succeeded);
+            mate.IsNotWoohooing() && tick-- > 0 ? JobCondition.Ongoing : JobCondition.Succeeded);
         t.AddFinishAction(delegate { Log.Message("Got Partner to Start WooHoo-ing Allegedly."); });
         yield return t;
 
         void NewFunction()
         {
-            if (!PawnHelper.IsNotWoohooing(mate))
+            if (!mate.IsNotWoohooing())
             {
                 return;
             }
