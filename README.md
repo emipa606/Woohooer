@@ -7,6 +7,8 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1541795354
 Based on Itachi E28s updated version 
 https://steamcommunity.com/sharedfiles/filedetails/?id=2127642337
 
+- Added support for humanoid alien races instead of strictly humans
+
 ![Image](https://i.imgur.com/pufA0kM.png)
 
 	

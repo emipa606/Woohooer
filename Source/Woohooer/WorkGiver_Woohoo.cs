@@ -26,6 +26,12 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
             return false;
         }
 
+        if (WoohooSettingHelper.latest.restrictToAdults && (!pawn.IsAdult() || !mate.IsAdult()))
+        {
+            JobFailReason.Is("Whohooer.NotAdults".Translate());
+            return false;
+        }
+
         if (!pawn.IsHumanoid() || !mate.IsHumanoid())
         {
             JobFailReason.Is("Whohooer.Humanoid".Translate());
@@ -64,48 +70,57 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
     private bool canAutoLove(Pawn pawn, Pawn pawn2)
     {
         var ticksGame = Find.TickManager.TicksGame;
-        int result;
-        if (WoohooSettingHelper.latest.allowAIWoohoo && pawn.mindState.canLovinTick < ticksGame &&
-            pawn2.mindState.canLovinTick < ticksGame && JobUtilityIdle.isIdle(pawn2) &&
-            pawn2.needs?.joy?.tolerances != null && pawn.needs?.joy?.tolerances != null)
+        if (!WoohooSettingHelper.latest.allowAIWoohoo || pawn.mindState.canLovinTick >= ticksGame ||
+            pawn2.mindState.canLovinTick >= ticksGame || !JobUtilityIdle.isIdle(pawn2) ||
+            pawn2.needs?.joy?.tolerances == null || pawn.needs?.joy?.tolerances == null)
         {
-            var needs = pawn2.needs;
-            if (needs != null)
-            {
-                var mood = needs.mood;
-                if (mood != null)
-                {
-                    _ = mood.CurLevel;
-                    var needs2 = pawn.needs;
-                    if (needs2 != null)
-                    {
-                        var mood2 = needs2.mood;
-                        if (mood2 != null)
-                        {
-                            _ = mood2.CurLevel;
-                            if (!pawn2.needs.joy.tolerances.BoredOf(Constants.Joy_Woohoo) &&
-                                !pawn.needs.joy.tolerances.BoredOf(Constants.Joy_Woohoo) &&
-                                (pawn2.needs.joy.CurLevel < 0.6f || pawn2.needs.mood.CurLevel < 0.6f) &&
-                                (pawn.needs.joy.CurLevel < 0.6f || pawn.needs.mood.CurLevel < 0.6f) &&
-                                Rand.Value < 0.1f && RelationsUtility.PawnsKnowEachOther(pawn, pawn2))
-                            {
-                                result = WoohooSettingHelper.latest.familyWeight *
-                                         LovePartnerRelationUtility.IncestOpinionOffsetFor(pawn2, pawn) *
-                                         Rand.Value <
-                                         0.5f
-                                    ? 1
-                                    : 0;
-                                goto IL_01c1;
-                            }
-                        }
-                    }
-                }
-            }
+            return false;
         }
 
-        result = 0;
-        IL_01c1:
-        return (byte)result != 0;
+        if (WoohooSettingHelper.latest.restrictToAdults && (!pawn.IsAdult() || !pawn2.IsAdult()))
+        {
+            return false;
+        }
+
+        var needs = pawn2.needs;
+        if (needs == null)
+        {
+            return false;
+        }
+
+        var mood = needs.mood;
+        if (mood == null)
+        {
+            return false;
+        }
+
+        _ = mood.CurLevel;
+        var needs2 = pawn.needs;
+        if (needs2 == null)
+        {
+            return false;
+        }
+
+        var mood2 = needs2.mood;
+        if (mood2 == null)
+        {
+            return false;
+        }
+
+        _ = mood2.CurLevel;
+        if (!pawn2.needs.joy.tolerances.BoredOf(Constants.Joy_Woohoo) &&
+            !pawn.needs.joy.tolerances.BoredOf(Constants.Joy_Woohoo) &&
+            (pawn2.needs.joy.CurLevel < 0.6f || pawn2.needs.mood.CurLevel < 0.6f) &&
+            (pawn.needs.joy.CurLevel < 0.6f || pawn.needs.mood.CurLevel < 0.6f) &&
+            Rand.Value < 0.1f && RelationsUtility.PawnsKnowEachOther(pawn, pawn2))
+        {
+            return WoohooSettingHelper.latest.familyWeight *
+                   LovePartnerRelationUtility.IncestOpinionOffsetFor(pawn2, pawn) *
+                   Rand.Value <
+                   0.5f;
+        }
+
+        return false;
     }
 
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)

@@ -51,6 +51,8 @@ internal class WoohooMod : Mod
         listing_Standard.CheckboxLabeled("Whohooer.sameGender".Translate(),
             ref settings.sameGender);
 
+        listing_Standard.CheckboxLabeled("Whohooer.restrictToAdults".Translate(),
+            ref settings.restrictToAdults);
         listing_Standard.CheckboxLabeled("Whohooer.allowAIWoohoo".Translate(),
             ref settings.allowAIWoohoo);
         if (settings.allowAIWoohoo)

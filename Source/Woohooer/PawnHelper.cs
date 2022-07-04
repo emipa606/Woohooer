@@ -11,6 +11,11 @@ internal static class PawnHelper
         return pawn.RaceProps.Humanlike;
     }
 
+    public static bool IsAdult(this Pawn pawn)
+    {
+        return pawn.ageTracker.Adult;
+    }
+
     public static bool IsSameRaceHumanoid(Pawn pawn, Pawn mate)
     {
         return pawn.RaceProps.Humanlike && mate.RaceProps.Humanlike && pawn.kindDef.race == mate.kindDef.race;

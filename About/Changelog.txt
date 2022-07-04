@@ -1,5 +1,8 @@
 # Changelog for Woohooer
 
+1.3.3 - Added setting to restrict wohooing to adults
+
+
 1.3.2 - Should now support all humanoid races. Added some extra job-fail reasons.
 
 

@@ -19,6 +19,7 @@ internal class WoohooModSettings : ModSettings
     public float lovedItChance;
 
     public int minAITicks;
+    public bool restrictToAdults;
 
     public bool sameGender = base_sameGender;
 
@@ -33,6 +34,7 @@ internal class WoohooModSettings : ModSettings
         Scribe_Values.Look(ref sameGender, "sameGender", base_sameGender);
         Scribe_Values.Look(ref familyWeight, "familyWeight", base_familyWeight);
         Scribe_Values.Look(ref allowAIWoohoo, "allowAIWoohoo", true);
+        Scribe_Values.Look(ref restrictToAdults, "restrictToAdults");
         Scribe_Values.Look(ref minAITicks, "minAIWoohoo", 2500);
         Scribe_Values.Look(ref lovedItChance, "lovedItChance", 1f);
     }
