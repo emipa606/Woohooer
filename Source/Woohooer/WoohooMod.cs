@@ -30,38 +30,37 @@ internal class WoohooMod : Mod
 
     public override void DoSettingsWindowContents(Rect inRect)
     {
-        base.DoSettingsWindowContents(inRect);
-
         var listing_Standard = new Listing_Standard();
         listing_Standard.Begin(inRect);
 
         listing_Standard.Label("Whohooer.woohooChildChance".Translate(settings.woohooChildChance.ToStringPercent()));
         settings.woohooChildChance = listing_Standard.Slider(settings.woohooChildChance, 0f, 1f);
         listing_Standard.Gap();
-        listing_Standard.Label(
-            "Whohooer.woohooBabyChildChance".Translate(settings.woohooBabyChildChance.ToStringPercent()));
+
+        listing_Standard.Label("Whohooer.woohooBabyChildChance".Translate(settings.woohooBabyChildChance.ToStringPercent()));
         settings.woohooBabyChildChance = listing_Standard.Slider(settings.woohooBabyChildChance, 0f, 1f);
         listing_Standard.Gap();
+
         listing_Standard.Label("Whohooer.familyWeight".Translate(settings.familyWeight.ToStringPercent()));
         settings.familyWeight = listing_Standard.Slider(settings.familyWeight, 0f, 1f);
         listing_Standard.Gap();
+
         listing_Standard.Label("Whohooer.lovedItChance".Translate(settings.lovedItChance.ToStringPercent()));
         settings.lovedItChance = listing_Standard.Slider(settings.lovedItChance, 0f, 1f);
         listing_Standard.Gap();
-        listing_Standard.CheckboxLabeled("Whohooer.sameGender".Translate(),
-            ref settings.sameGender);
 
-        listing_Standard.CheckboxLabeled("Whohooer.restrictToAdults".Translate(),
-            ref settings.restrictToAdults);
-        listing_Standard.CheckboxLabeled("Whohooer.allowAIWoohoo".Translate(),
-            ref settings.allowAIWoohoo);
+        listing_Standard.CheckboxLabeled("Whohooer.sameGender".Translate(), ref settings.sameGender);
+        listing_Standard.CheckboxLabeled("Whohooer.restrictToAdults".Translate(), ref settings.restrictToAdults);
+        listing_Standard.Gap();
+
+        listing_Standard.CheckboxLabeled("Whohooer.allowAIWoohoo".Translate(), ref settings.allowAIWoohoo);
         if (settings.allowAIWoohoo)
         {
             listing_Standard.Label("Whohooer.minAITicks".Translate(settings.minAITicks.ToStringTicksToDays()));
             settings.minAITicks = (int)listing_Standard.Slider(settings.minAITicks, 1000f, 1000000f);
         }
 
-        listing_Standard.Gap();
+        listing_Standard.GapLine();
         listing_Standard.Label("Whohooer.Credit".Translate());
         if (currentVersion != null)
         {
@@ -72,5 +71,6 @@ internal class WoohooMod : Mod
         }
 
         listing_Standard.End();
+        base.DoSettingsWindowContents(inRect);
     }
 }
