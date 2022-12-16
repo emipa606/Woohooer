@@ -32,6 +32,10 @@ public class Mate
             }
             hasWomb.relations.SetPregnancyApproach(donor, currentApproach);
         }
+        else if (ChildrenCrossMod.isChildrenModOn())
+        {
+            ChildrenCrossMod.Mated(donor, hasWomb);
+        } 
         else
         {
             DefaultMate(donor, hasWomb);

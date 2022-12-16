@@ -9,9 +9,6 @@
     <FileVersion>1.3.3</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="ChildrenCrossMod.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
       <Version>*</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
@@ -22,6 +19,11 @@
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Mlie_Rimworld_VersionFromManifest" Version="*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ChildrenHelperClasses">
+      <HintPath>F:\SteamLibrary\steamapps\workshop\content\294100\1541438230\1.4\Assemblies\ChildrenHelperClasses.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
