@@ -10,13 +10,14 @@ namespace DarkIntentionsWoohoo.mod.settings;
 internal class WoohooMod : Mod
 {
     private static string currentVersion;
-    private readonly WoohooModSettings settings;
+//    private readonly WoohooModSettings settings;
 
     public WoohooMod(ModContentPack content)
         : base(content)
     {
-        settings = GetSettings<WoohooModSettings>();
-        WoohooSettingHelper.latest = settings;
+        
+//        settings = GetSettings<WoohooModSettings>();
+        /*    WoohooSettingHelper.latest = settings; */
         var harmony = new Harmony("DarkIntentionsWoohoo.mod.settings.harmony");
         harmony.PatchAll(Assembly.GetExecutingAssembly());
         currentVersion =
@@ -33,31 +34,31 @@ internal class WoohooMod : Mod
         var listing_Standard = new Listing_Standard();
         listing_Standard.Begin(inRect);
 
-        listing_Standard.Label("Whohooer.woohooChildChance".Translate(settings.woohooChildChance.ToStringPercent()));
-        settings.woohooChildChance = listing_Standard.Slider(settings.woohooChildChance, 0f, 1f);
+        listing_Standard.Label("Whohooer.woohooChildChance".Translate(WoohooModSettings.woohooChildChance.ToStringPercent()));
+        WoohooModSettings.woohooChildChance = listing_Standard.Slider(WoohooModSettings.woohooChildChance, 0f, 1f);
         listing_Standard.Gap();
 
-        listing_Standard.Label("Whohooer.woohooBabyChildChance".Translate(settings.woohooBabyChildChance.ToStringPercent()));
-        settings.woohooBabyChildChance = listing_Standard.Slider(settings.woohooBabyChildChance, 0f, 1f);
+        listing_Standard.Label("Whohooer.woohooBabyChildChance".Translate(WoohooModSettings.woohooBabyChildChance.ToStringPercent()));
+        WoohooModSettings.woohooBabyChildChance = listing_Standard.Slider(WoohooModSettings.woohooBabyChildChance, 0f, 1f);
         listing_Standard.Gap();
 
-        listing_Standard.Label("Whohooer.familyWeight".Translate(settings.familyWeight.ToStringPercent()));
-        settings.familyWeight = listing_Standard.Slider(settings.familyWeight, 0f, 1f);
+        listing_Standard.Label("Whohooer.familyWeight".Translate(WoohooModSettings.familyWeight.ToStringPercent()));
+        WoohooModSettings.familyWeight = listing_Standard.Slider(WoohooModSettings.familyWeight, 0f, 1f);
         listing_Standard.Gap();
 
-        listing_Standard.Label("Whohooer.lovedItChance".Translate(settings.lovedItChance.ToStringPercent()));
-        settings.lovedItChance = listing_Standard.Slider(settings.lovedItChance, 0f, 1f);
+        listing_Standard.Label("Whohooer.lovedItChance".Translate(WoohooModSettings.lovedItChance.ToStringPercent()));
+        WoohooModSettings.lovedItChance = listing_Standard.Slider(WoohooModSettings.lovedItChance, 0f, 1f);
         listing_Standard.Gap();
 
-        listing_Standard.CheckboxLabeled("Whohooer.sameGender".Translate(), ref settings.sameGender);
-        listing_Standard.CheckboxLabeled("Whohooer.restrictToAdults".Translate(), ref settings.restrictToAdults);
+        listing_Standard.CheckboxLabeled("Whohooer.sameGender".Translate(), ref WoohooModSettings.sameGender);
+        listing_Standard.CheckboxLabeled("Whohooer.restrictToAdults".Translate(), ref WoohooModSettings.restrictToAdults);
         listing_Standard.Gap();
 
-        listing_Standard.CheckboxLabeled("Whohooer.allowAIWoohoo".Translate(), ref settings.allowAIWoohoo);
-        if (settings.allowAIWoohoo)
+        listing_Standard.CheckboxLabeled("Whohooer.allowAIWoohoo".Translate(), ref WoohooModSettings.allowAIWoohoo);
+        if (WoohooModSettings.allowAIWoohoo)
         {
-            listing_Standard.Label("Whohooer.minAITicks".Translate(settings.minAITicks.ToStringTicksToDays()));
-            settings.minAITicks = (int)listing_Standard.Slider(settings.minAITicks, 1000f, 1000000f);
+            listing_Standard.Label("Whohooer.minAITicks".Translate(WoohooModSettings.minAITicks.ToStringTicksToDays()));
+            WoohooModSettings.minAITicks = (int)listing_Standard.Slider(WoohooModSettings.minAITicks, 1000f, 1000000f);
         }
 
         listing_Standard.GapLine();

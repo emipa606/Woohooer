@@ -8,23 +8,13 @@ namespace DarkIntentionsWoohoo;
 internal class MemoryManager
 {
     public static readonly ThoughtDef PrisonerWoohoo = DefDatabase<ThoughtDef>.GetNamed("PrisonerWoohoo");
-
-    public static readonly ThoughtDef MasochistPrisonerWoohoo =
-        DefDatabase<ThoughtDef>.GetNamed("MasochistPrisonerWoohoo");
-
+    public static readonly ThoughtDef MasochistPrisonerWoohoo = DefDatabase<ThoughtDef>.GetNamed("MasochistPrisonerWoohoo");
     public static readonly ThoughtDef PrisonerWoohooMemory = DefDatabase<ThoughtDef>.GetNamed("PrisonerWoohooMemory");
-
-    public static readonly ThoughtDef MasochistPrisonerWoohooMemory =
-        DefDatabase<ThoughtDef>.GetNamed("MasochistPrisonerWoohooMemory");
-
+    public static readonly ThoughtDef MasochistPrisonerWoohooMemory = DefDatabase<ThoughtDef>.GetNamed("MasochistPrisonerWoohooMemory");
     public static readonly ThoughtDef WoohooColonist = DefDatabase<ThoughtDef>.GetNamed("WoohooColonist");
-
     public static readonly ThoughtDef WoohooColonistRegret = DefDatabase<ThoughtDef>.GetNamed("WoohooColonistRegret");
-
     public static readonly ThoughtDef WoohooNeutral = DefDatabase<ThoughtDef>.GetNamed("WoohooNeutral");
-
     public static readonly ThoughtDef WoohooKink = DefDatabase<ThoughtDef>.GetNamed("WoohooKink");
-
     public static readonly ThoughtDef WoohooKinkMemory = DefDatabase<ThoughtDef>.GetNamed("WoohooKinkMemory");
 
     public static Toil addMoodletsToil(Pawn pawn, Pawn mate)
@@ -64,13 +54,13 @@ internal class MemoryManager
         }
 
         addMemory(mate, WoohooColonist);
-        if (Rand.Value < WoohooSettingHelper.latest.lovedItChance)
+        if (Rand.Value < WoohooModSettings.lovedItChance)
         {
             addMemoryOfOther(mate, ThoughtDefOf.GotSomeLovin, pawn);
         }
 
         addMemory(pawn, WoohooColonist);
-        if (Rand.Value < WoohooSettingHelper.latest.lovedItChance)
+        if (Rand.Value < WoohooModSettings.lovedItChance)
         {
             addMemoryOfOther(pawn, ThoughtDefOf.GotSomeLovin, mate);
         }

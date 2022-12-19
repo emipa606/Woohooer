@@ -16,12 +16,12 @@ internal class BetterBedFinder
         }
 
         Building_Bed result;
-        if ((result = PawnBedBigEnough(pawn)) != null)
+        if ((result = PawnBedBigEnough(pawn)) != null && canReach(mate, result))
         {
             return result;
         }
 
-        if ((result = PawnBedBigEnough(pawn)) != null)
+        if ((result = PawnBedBigEnough(mate)) != null && canReach(pawn, result))
         {
             return result;
         }
@@ -73,13 +73,15 @@ internal class BetterBedFinder
         return null;
     }
 
+    private static bool canReach(Pawn pawn, Building_Bed bed) {
+        return pawn.CanReachImmediate(bed, PathEndMode.OnCell); 
+    }
     private static bool canReserve(Pawn traveler, Building_Bed building_Bed)
     {
-        LocalTargetInfo target = building_Bed;
         var peMode = PathEndMode.OnCell;
         var maxDanger = Danger.Some;
         var sleepingSlotsCount = building_Bed.SleepingSlotsCount;
-        if (!traveler.CanReserveAndReach(target, peMode, maxDanger, sleepingSlotsCount))
+        if (!traveler.CanReserveAndReach(building_Bed, peMode, maxDanger, sleepingSlotsCount))
         {
             return false;
         }
@@ -94,8 +96,8 @@ internal class BetterBedFinder
             return null;
         }
 
-        var building_Bed = pawn.CurrentBed();
-        if (building_Bed is { SleepingSlotsCount: > 1 })
+        Building_Bed building_Bed = pawn.CurrentBed();
+        if (building_Bed is { SleepingSlotsCount: >= 1 })
         {
             return building_Bed;
         }

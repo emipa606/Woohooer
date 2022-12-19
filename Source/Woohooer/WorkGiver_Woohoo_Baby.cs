@@ -8,7 +8,7 @@ internal class WorkGiver_Woohoo_Baby : WorkGiver_Woohoo
 {
     public override float MateChance()
     {
-        return WoohooSettingHelper.latest.woohooBabyChildChance;
+        return WoohooModSettings.woohooBabyChildChance;
     }
 
     public override bool IsMate(Pawn pawn, Pawn pawn2)
