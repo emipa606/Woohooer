@@ -7,10 +7,10 @@ internal static class FertilityChecker
 {
     public static bool is_fertile(Pawn pawn)
     {
-        return getFetility(pawn) > Constants.MINIMUM_REPO;
+        return getFertility(pawn) > Constants.MINIMUM_REPO;
     }
 
-    public static float getFetility(Pawn pawn)
+    public static float getFertility(Pawn pawn)
     {
         if (alreadyPregnant(pawn))
         {

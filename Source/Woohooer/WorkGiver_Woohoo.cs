@@ -157,7 +157,7 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
 
     public virtual bool IsMate(Pawn pawn, Pawn pawn2)
     {
-        var num = FertilityChecker.getFetility(pawn) + (FertilityChecker.getFetility(pawn2) / 2f);
+        var num = FertilityChecker.getFertility(pawn) + (FertilityChecker.getFertility(pawn2) / 2f);
         num *= MateChance();
         if (pawn.gender == pawn2.gender && !WoohooModSettings.sameGender)
         {

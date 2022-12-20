@@ -74,19 +74,11 @@ internal class BetterBedFinder
     }
 
     private static bool canReach(Pawn pawn, Building_Bed bed) {
-        return pawn.CanReachImmediate(bed, PathEndMode.OnCell); 
+        return pawn.CanReach(bed, PathEndMode.Touch, Danger.Some); 
     }
     private static bool canReserve(Pawn traveler, Building_Bed building_Bed)
     {
-        var peMode = PathEndMode.OnCell;
-        var maxDanger = Danger.Some;
-        var sleepingSlotsCount = building_Bed.SleepingSlotsCount;
-        if (!traveler.CanReserveAndReach(building_Bed, peMode, maxDanger, sleepingSlotsCount))
-        {
-            return false;
-        }
-
-        return true;
+        return traveler.CanReserveAndReach(building_Bed, PathEndMode.OnCell, Danger.Some, maxPawns: building_Bed.SleepingSlotsCount);
     }
 
     private static Building_Bed PawnBedBigEnough(Pawn pawn)

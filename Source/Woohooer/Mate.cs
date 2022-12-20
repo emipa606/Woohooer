@@ -32,7 +32,7 @@ public class Mate
             }
             hasWomb.relations.SetPregnancyApproach(donor, currentApproach);
         }
-        else if (ChildrenCrossMod.isChildrenModOn())
+        else if (ModsConfig.IsActive("Dylan.CSL"))
         {
             ChildrenCrossMod.Mated(donor, hasWomb);
         } 
