@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DarkIntentionsWoohoo.mod.settings;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -47,7 +48,7 @@ internal class JobDriver_Woohoo : JobDriver
                 .Union(WoohooManager.AnimateLovin(pawn, mate, building_Bed))
                 .Union(MakeMyLoveToils(pawn, mate))
                 .Union(WoohooManager.AnimateLovin(pawn, mate, building_Bed,
-                    delegate { Log.Message("We're done animating on main job."); }, 500));
+                    delegate { WoohooMod.LogMessage("We're done animating on main job."); }, 500));
         }
         else
         {
@@ -103,7 +104,7 @@ internal class JobDriver_Woohoo : JobDriver
             return true;
         }
 
-        Log.Message(
+        WoohooMod.LogMessage(
             $"[{pawn?.Name}] can't woohoo right. Timing out their lovin for 500 ticks. They tried to some weird stuff:{GetReport()}");
         if (pawn != null)
         {

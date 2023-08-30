@@ -98,12 +98,7 @@ public class HookupBedmanager
             return bed.OwnersForReading.ToList().AsEnumerable();
         }
 
-        if (bed.OwnersForReading != null)
-        {
-            return bed.OwnersForReading.ToList().AsEnumerable();
-        }
-
-        return null;
+        return (bed.OwnersForReading?.ToList()).AsEnumerable();
     }
 
     public static bool claimBed(Building_Bed bed, Pawn pawn)

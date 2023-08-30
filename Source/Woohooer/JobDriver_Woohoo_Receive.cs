@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DarkIntentionsWoohoo.mod.settings;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -22,12 +23,12 @@ internal class JobDriver_Woohoo_Receive : JobDriver
         list.AddRange(WoohooManager.AnimateLovin(pawn, TargetA.Thing as Pawn, TargetB.Thing as Building_Bed));
         var obj = new Toil
         {
-            initAction = delegate { Log.Message("Getting Woohooing, will be done in 400 ticks"); },
+            initAction = delegate { WoohooMod.LogMessage("Getting Woohooing, will be done in 400 ticks"); },
             defaultDuration = 400,
             defaultCompleteMode = ToilCompleteMode.Delay
         };
         list.Add(obj);
-        obj.AddFinishAction(delegate { Log.Message("Done Woohing Get"); });
+        obj.AddFinishAction(delegate { WoohooMod.LogMessage("Done Woohing Get"); });
         PawnHelper.DelayNextWooHoo(pawn);
         return list;
     }

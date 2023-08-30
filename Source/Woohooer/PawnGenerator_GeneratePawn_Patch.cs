@@ -10,7 +10,7 @@ public static class PawnGenerator_GeneratePawn_Patch
     [HarmonyPostfix]
     public static void Postfix(ref Pawn __result, PawnGenerationRequest request)
     {
-        if (__result?.guest != null && __result.guest.IsPrisoner && __result.guest.HostFaction == Faction.OfPlayer)
+        if (__result?.guest is { IsPrisoner: true } && __result.guest.HostFaction == Faction.OfPlayer)
         {
             __result.guest.SetGuestStatus(null);
         }

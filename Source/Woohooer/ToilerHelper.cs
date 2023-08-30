@@ -1,4 +1,5 @@
 using System;
+using DarkIntentionsWoohoo.mod.settings;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -35,7 +36,7 @@ public static class ToilerHelper
                 }
             }
         };
-        toil.AddFinishAction(delegate { Log.Message($"Got to [{thing}]."); });
+        toil.AddFinishAction(delegate { WoohooMod.LogMessage($"Got to [{thing}]."); });
         toil.socialMode = RandomSocialMode.Off;
         toil.defaultCompleteMode = mode;
         return toil;

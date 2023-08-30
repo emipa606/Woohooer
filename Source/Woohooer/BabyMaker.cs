@@ -21,13 +21,12 @@ internal class BabyMaker
                 {
                     Mate.Mated(target, pawn, isMakeBaby);
                     pawn.records.Increment(Constants.TimesWooHooedGotPregnant);
-                } 
+                }
                 else if (FertilityChecker.is_FemaleForBabies(target))
                 {
                     Mate.Mated(pawn, target, isMakeBaby);
                     target.records.Increment(Constants.TimesWooHooedGotPregnant);
                 }
-
             },
             socialMode = RandomSocialMode.Off,
             defaultCompleteMode = ToilCompleteMode.Instant

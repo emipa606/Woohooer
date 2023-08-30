@@ -8,9 +8,15 @@ namespace DarkIntentionsWoohoo;
 internal class MemoryManager
 {
     public static readonly ThoughtDef PrisonerWoohoo = DefDatabase<ThoughtDef>.GetNamed("PrisonerWoohoo");
-    public static readonly ThoughtDef MasochistPrisonerWoohoo = DefDatabase<ThoughtDef>.GetNamed("MasochistPrisonerWoohoo");
+
+    public static readonly ThoughtDef MasochistPrisonerWoohoo =
+        DefDatabase<ThoughtDef>.GetNamed("MasochistPrisonerWoohoo");
+
     public static readonly ThoughtDef PrisonerWoohooMemory = DefDatabase<ThoughtDef>.GetNamed("PrisonerWoohooMemory");
-    public static readonly ThoughtDef MasochistPrisonerWoohooMemory = DefDatabase<ThoughtDef>.GetNamed("MasochistPrisonerWoohooMemory");
+
+    public static readonly ThoughtDef MasochistPrisonerWoohooMemory =
+        DefDatabase<ThoughtDef>.GetNamed("MasochistPrisonerWoohooMemory");
+
     public static readonly ThoughtDef WoohooColonist = DefDatabase<ThoughtDef>.GetNamed("WoohooColonist");
     public static readonly ThoughtDef WoohooColonistRegret = DefDatabase<ThoughtDef>.GetNamed("WoohooColonistRegret");
     public static readonly ThoughtDef WoohooNeutral = DefDatabase<ThoughtDef>.GetNamed("WoohooNeutral");

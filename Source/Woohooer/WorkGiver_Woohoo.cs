@@ -34,7 +34,7 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
 
         if (!pawn.IsHumanoid() || !mate.IsHumanoid())
         {
- //           JobFailReason.Is("Whohooer.Humanoid".Translate());
+            //           JobFailReason.Is("Whohooer.Humanoid".Translate());
             return false;
         }
 
@@ -83,12 +83,8 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
         }
 
         var needs = pawn2.needs;
-        if (needs == null)
-        {
-            return false;
-        }
 
-        var mood = needs.mood;
+        var mood = needs?.mood;
         if (mood == null)
         {
             return false;
@@ -96,12 +92,8 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
 
         _ = mood.CurLevel;
         var needs2 = pawn.needs;
-        if (needs2 == null)
-        {
-            return false;
-        }
 
-        var mood2 = needs2.mood;
+        var mood2 = needs2?.mood;
         if (mood2 == null)
         {
             return false;

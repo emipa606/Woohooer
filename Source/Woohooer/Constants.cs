@@ -5,7 +5,7 @@ namespace DarkIntentionsWoohoo;
 
 internal static class Constants
 {
-    public static float MINIMUM_REPO = 0.01f;
+    public static readonly float MINIMUM_REPO = 0.01f;
 
     public static readonly JobDef JobWooHoo = DefDatabase<JobDef>.GetNamed("WooHoo");
 

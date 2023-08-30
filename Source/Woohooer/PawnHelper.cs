@@ -23,27 +23,27 @@ internal static class PawnHelper
 
     public static bool IsMasochist(this Pawn pawn)
     {
-        return pawn is { story.traits: { } } && pawn.story.traits.HasTrait(TraitDef.Named("Masochist"));
+        return pawn is { story.traits: not null } && pawn.story.traits.HasTrait(TraitDef.Named("Masochist"));
     }
 
     public static bool IsPsychopath(this Pawn pawn)
     {
-        return pawn is { story.traits: { } } && pawn.story.traits.HasTrait(TraitDefOf.Psychopath);
+        return pawn is { story.traits: not null } && pawn.story.traits.HasTrait(TraitDefOf.Psychopath);
     }
 
     public static bool IsBloodlust(this Pawn pawn)
     {
-        return pawn is { story.traits: { } } && pawn.story.traits.HasTrait(TraitDefOf.Bloodlust);
+        return pawn is { story.traits: not null } && pawn.story.traits.HasTrait(TraitDefOf.Bloodlust);
     }
 
     public static bool IsBrawler(this Pawn pawn)
     {
-        return pawn is { story.traits: { } } && pawn.story.traits.HasTrait(TraitDefOf.Brawler);
+        return pawn is { story.traits: not null } && pawn.story.traits.HasTrait(TraitDefOf.Brawler);
     }
 
     public static bool IsKind(this Pawn pawn)
     {
-        return pawn is { story.traits: { } } && pawn.story.traits.HasTrait(TraitDefOf.Kind);
+        return pawn is { story.traits: not null } && pawn.story.traits.HasTrait(TraitDefOf.Kind);
     }
 
     public static bool IsNotWoohooing(this Pawn mate)

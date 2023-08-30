@@ -31,7 +31,7 @@ internal class WorkGiver_Woohoo_Baby : WorkGiver_Woohoo
             return false;
         }
 
-        if (pawn.gender == mate.gender)
+        if (mate != null && pawn.gender == mate.gender)
         {
             JobFailReason.Is("Whohooer.NotFertile".Translate(pawn.Name.ToStringShort));
             return false;
@@ -45,7 +45,7 @@ internal class WorkGiver_Woohoo_Baby : WorkGiver_Woohoo
 
         if (FertilityChecker.is_fertile(mate))
         {
-            return (FertilityChecker.is_FemaleForBabies(pawn) || FertilityChecker.is_FemaleForBabies(mate));
+            return FertilityChecker.is_FemaleForBabies(pawn) || FertilityChecker.is_FemaleForBabies(mate);
         }
 
         JobFailReason.Is("Whohooer.NotFertile".Translate(mate?.Name.ToStringShort));

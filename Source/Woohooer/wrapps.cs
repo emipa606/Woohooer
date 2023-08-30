@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using RimWorld;
@@ -45,10 +46,11 @@ internal class wrapps
             {
                 return;
             }
-            var l = new System.Collections.Generic.List<HeDiffPrisonerGivingBirth>();
-            mother.health.hediffSet.GetHediffs<HeDiffPrisonerGivingBirth>(ref l);
+
+            var l = new List<HeDiffPrisonerGivingBirth>();
+            mother.health.hediffSet.GetHediffs(ref l);
             var enumerable = from x in l
-                             //GetHediffs<HeDiffPrisonerGivingBirth>()
+                //GetHediffs<HeDiffPrisonerGivingBirth>()
                 where true
                 select x;
             if (!enumerable.Any())

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DarkIntentionsWoohoo.mod.settings;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -19,7 +20,7 @@ internal static class WoohooManager
         };
         t.AddEndCondition(() =>
             mate.IsNotWoohooing() && tick-- > 0 ? JobCondition.Ongoing : JobCondition.Succeeded);
-        t.AddFinishAction(delegate { Log.Message("Got Partner to Start WooHoo-ing Allegedly."); });
+        t.AddFinishAction(delegate { WoohooMod.LogMessage("Got Partner to Start WooHoo-ing Allegedly."); });
         yield return t;
 
         void NewFunction()
@@ -48,7 +49,7 @@ internal static class WoohooManager
         Toil toil;
         var t = toil = ToilerHelper.GotoThing(pawn, bed);
         yield return toil;
-        t.AddFinishAction(delegate { Log.Message("Got To Bed for woohooing"); });
+        t.AddFinishAction(delegate { WoohooMod.LogMessage("Got To Bed for woohooing"); });
         var layDown = new Toil
         {
             initAction = delegate
@@ -145,7 +146,7 @@ internal static class WoohooManager
             defaultCompleteMode = ToilCompleteMode.Delay,
             defaultDuration = 250
         };
-        toil.AddFinishAction(delegate { Log.Message("Done Asking"); });
+        toil.AddFinishAction(delegate { WoohooMod.LogMessage("Done Asking"); });
         return toil;
     }
 }
