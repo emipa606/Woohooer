@@ -26,7 +26,7 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
             return false;
         }
 
-        if (WoohooSettingHelper.latest.restrictToAdults && (!pawn.IsAdult() || !mate.IsAdult()))
+        if (WoohooModSettings.restrictToAdults && (!pawn.IsAdult() || !mate.IsAdult()))
         {
             JobFailReason.Is("Whohooer.NotAdults".Translate());
             return false;
@@ -34,19 +34,19 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
 
         if (!pawn.IsHumanoid() || !mate.IsHumanoid())
         {
-            JobFailReason.Is("Whohooer.Humanoid".Translate());
+ //           JobFailReason.Is("Whohooer.Humanoid".Translate());
             return false;
         }
 
         if (!mate.IsNotWoohooing() || !pawn.IsNotWoohooing())
         {
-            JobFailReason.Is("Whohooer.AlreadyWohooing".Translate());
+//            JobFailReason.Is("Whohooer.AlreadyWohooing".Translate());
             return false;
         }
 
         if (ModsConfig.IdeologyActive && !BedUtility.WillingToShareBed(pawn, mate))
         {
-            JobFailReason.Is("IdeoligionForbids".Translate());
+//            JobFailReason.Is("IdeoligionForbids".Translate());
             return false;
         }
 
@@ -70,14 +70,14 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
     private bool canAutoLove(Pawn pawn, Pawn pawn2)
     {
         var ticksGame = Find.TickManager.TicksGame;
-        if (!WoohooSettingHelper.latest.allowAIWoohoo || pawn.mindState.canLovinTick >= ticksGame ||
+        if (!WoohooModSettings.allowAIWoohoo || pawn.mindState.canLovinTick >= ticksGame ||
             pawn2.mindState.canLovinTick >= ticksGame || !JobUtilityIdle.isIdle(pawn2) ||
             pawn2.needs?.joy?.tolerances == null || pawn.needs?.joy?.tolerances == null)
         {
             return false;
         }
 
-        if (WoohooSettingHelper.latest.restrictToAdults && (!pawn.IsAdult() || !pawn2.IsAdult()))
+        if (WoohooModSettings.restrictToAdults && (!pawn.IsAdult() || !pawn2.IsAdult()))
         {
             return false;
         }
@@ -114,7 +114,7 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
             (pawn.needs.joy.CurLevel < 0.6f || pawn.needs.mood.CurLevel < 0.6f) &&
             Rand.Value < 0.1f && RelationsUtility.PawnsKnowEachOther(pawn, pawn2))
         {
-            return WoohooSettingHelper.latest.familyWeight *
+            return WoohooModSettings.familyWeight *
                    LovePartnerRelationUtility.IncestOpinionOffsetFor(pawn2, pawn) *
                    Rand.Value <
                    0.5f;
@@ -152,14 +152,14 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
 
     public virtual float MateChance()
     {
-        return WoohooSettingHelper.latest.woohooChildChance;
+        return WoohooModSettings.woohooChildChance;
     }
 
     public virtual bool IsMate(Pawn pawn, Pawn pawn2)
     {
-        var num = FertilityChecker.getFetility(pawn) + (FertilityChecker.getFetility(pawn2) / 2f);
+        var num = FertilityChecker.getFertility(pawn) + (FertilityChecker.getFertility(pawn2) / 2f);
         num *= MateChance();
-        if (pawn.gender == pawn2.gender && !WoohooSettingHelper.latest.sameGender)
+        if (pawn.gender == pawn2.gender && !WoohooModSettings.sameGender)
         {
             return false;
         }

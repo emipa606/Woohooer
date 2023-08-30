@@ -65,7 +65,7 @@ internal static class PawnHelper
     public static void DelayNextWooHoo(Pawn pawn)
     {
         pawn.mindState.canLovinTick = Find.TickManager.TicksGame +
-                                      Rand.Range((int)(WoohooSettingHelper.latest.minAITicks * 0.9f),
-                                          (int)(WoohooSettingHelper.latest.minAITicks * 1.1f));
+                                      Rand.Range((int)(WoohooModSettings.minAITicks * 0.9f),
+                                          (int)(WoohooModSettings.minAITicks * 1.1f));
     }
 }

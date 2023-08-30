@@ -45,8 +45,10 @@ internal class wrapps
             {
                 return;
             }
-
-            var enumerable = from x in mother.health.hediffSet.GetHediffs<HeDiffPrisonerGivingBirth>()
+            var l = new System.Collections.Generic.List<HeDiffPrisonerGivingBirth>();
+            mother.health.hediffSet.GetHediffs<HeDiffPrisonerGivingBirth>(ref l);
+            var enumerable = from x in l
+                             //GetHediffs<HeDiffPrisonerGivingBirth>()
                 where true
                 select x;
             if (!enumerable.Any())

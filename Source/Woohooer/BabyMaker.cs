@@ -6,30 +6,28 @@ namespace DarkIntentionsWoohoo;
 
 internal class BabyMaker
 {
-    public static Toil DoMakeBaby(Pawn pawn, Pawn TargetA)
+    public static Toil DoMakeBaby(Pawn pawn, Pawn target, bool isMakeBaby)
     {
         return new Toil
         {
             initAction = delegate
             {
-                if (!FertilityChecker.is_fertile(pawn) || !FertilityChecker.is_fertile(TargetA))
+                if (!FertilityChecker.is_fertile(pawn) || !FertilityChecker.is_fertile(target))
                 {
                     return;
                 }
 
                 if (FertilityChecker.is_FemaleForBabies(pawn))
                 {
-                    Mate.Mated(TargetA, pawn);
+                    Mate.Mated(target, pawn, isMakeBaby);
                     pawn.records.Increment(Constants.TimesWooHooedGotPregnant);
-                }
-
-                if (!FertilityChecker.is_FemaleForBabies(TargetA))
+                } 
+                else if (FertilityChecker.is_FemaleForBabies(target))
                 {
-                    return;
+                    Mate.Mated(pawn, target, isMakeBaby);
+                    target.records.Increment(Constants.TimesWooHooedGotPregnant);
                 }
 
-                Mate.Mated(pawn, TargetA);
-                TargetA.records.Increment(Constants.TimesWooHooedGotPregnant);
             },
             socialMode = RandomSocialMode.Off,
             defaultCompleteMode = ToilCompleteMode.Instant

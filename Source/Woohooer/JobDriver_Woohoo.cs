@@ -79,10 +79,8 @@ internal class JobDriver_Woohoo : JobDriver
         }
 
         yield return MemoryManager.addMoodletsToil(asker, mate);
-        if (isMakeBaby())
-        {
-            yield return BabyMaker.DoMakeBaby(asker, mate);
-        }
+
+        yield return BabyMaker.DoMakeBaby(asker, mate, isMakeBaby());
     }
 
     public override bool CanBeginNowWhileLyingDown()
