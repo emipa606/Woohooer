@@ -22,6 +22,7 @@ internal static class WoohooManager
             mate.IsNotWoohooing() && tick-- > 0 ? JobCondition.Ongoing : JobCondition.Succeeded);
         t.AddFinishAction(delegate { WoohooMod.LogMessage("Got Partner to Start WooHoo-ing Allegedly."); });
         yield return t;
+        yield break;
 
         void NewFunction()
         {

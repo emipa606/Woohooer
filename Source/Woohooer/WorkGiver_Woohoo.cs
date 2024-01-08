@@ -26,7 +26,7 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
             return false;
         }
 
-        if (WoohooModSettings.restrictToAdults && (!pawn.IsAdult() || !mate.IsAdult()))
+        if (WoohooMod.instance.Settings.restrictToAdults && (!pawn.IsAdult() || !mate.IsAdult()))
         {
             JobFailReason.Is("Whohooer.NotAdults".Translate());
             return false;
@@ -70,14 +70,14 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
     private bool canAutoLove(Pawn pawn, Pawn pawn2)
     {
         var ticksGame = Find.TickManager.TicksGame;
-        if (!WoohooModSettings.allowAIWoohoo || pawn.mindState.canLovinTick >= ticksGame ||
+        if (!WoohooMod.instance.Settings.allowAIWoohoo || pawn.mindState.canLovinTick >= ticksGame ||
             pawn2.mindState.canLovinTick >= ticksGame || !JobUtilityIdle.isIdle(pawn2) ||
             pawn2.needs?.joy?.tolerances == null || pawn.needs?.joy?.tolerances == null)
         {
             return false;
         }
 
-        if (WoohooModSettings.restrictToAdults && (!pawn.IsAdult() || !pawn2.IsAdult()))
+        if (WoohooMod.instance.Settings.restrictToAdults && (!pawn.IsAdult() || !pawn2.IsAdult()))
         {
             return false;
         }
@@ -106,7 +106,7 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
             (pawn.needs.joy.CurLevel < 0.6f || pawn.needs.mood.CurLevel < 0.6f) &&
             Rand.Value < 0.1f && RelationsUtility.PawnsKnowEachOther(pawn, pawn2))
         {
-            return WoohooModSettings.familyWeight *
+            return WoohooMod.instance.Settings.familyWeight *
                    LovePartnerRelationUtility.IncestOpinionOffsetFor(pawn2, pawn) *
                    Rand.Value <
                    0.5f;
@@ -142,16 +142,16 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
         };
     }
 
-    public virtual float MateChance()
+    protected virtual float MateChance()
     {
-        return WoohooModSettings.woohooChildChance;
+        return WoohooMod.instance.Settings.woohooChildChance;
     }
 
-    public virtual bool IsMate(Pawn pawn, Pawn pawn2)
+    protected virtual bool IsMate(Pawn pawn, Pawn pawn2)
     {
         var num = FertilityChecker.getFertility(pawn) + (FertilityChecker.getFertility(pawn2) / 2f);
         num *= MateChance();
-        if (pawn.gender == pawn2.gender && !WoohooModSettings.sameGender)
+        if (pawn.gender == pawn2.gender && !WoohooMod.instance.Settings.sameGender)
         {
             return false;
         }

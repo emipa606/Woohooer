@@ -4,14 +4,14 @@ namespace DarkIntentionsWoohoo.mod.settings;
 
 internal class WoohooModSettings : ModSettings
 {
-    public static int minAITicks;
-    public static bool allowAIWoohoo;
-    public static bool restrictToAdults;
-    public static bool sameGender;
-    public static float familyWeight;
-    public static float lovedItChance;
-    public static float woohooBabyChildChance;
-    public static float woohooChildChance;
+    public bool allowAIWoohoo;
+    public float familyWeight;
+    public float lovedItChance;
+    public int minAITicks;
+    public bool restrictToAdults;
+    public bool sameGender;
+    public float woohooBabyChildChance;
+    public float woohooChildChance;
 
     public override void ExposeData()
     {

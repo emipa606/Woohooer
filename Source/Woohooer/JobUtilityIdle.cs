@@ -7,8 +7,8 @@ namespace DarkIntentionsWoohoo;
 
 public abstract class JobUtilityIdle
 {
-    private static readonly List<JobDef> idleJobDefs = new List<JobDef>
-    {
+    private static readonly List<JobDef> idleJobDefs =
+    [
         JobDefOf.Wait,
         JobDefOf.Goto,
         JobDefOf.GotoWander,
@@ -16,7 +16,7 @@ public abstract class JobUtilityIdle
         JobDefOf.Wait_MaintainPosture,
         JobDefOf.Insult,
         JobDefOf.LayDown
-    };
+    ];
 
     public static bool isIdle(Pawn pawn)
     {

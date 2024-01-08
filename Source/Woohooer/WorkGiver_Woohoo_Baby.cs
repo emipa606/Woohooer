@@ -6,12 +6,12 @@ namespace DarkIntentionsWoohoo;
 
 internal class WorkGiver_Woohoo_Baby : WorkGiver_Woohoo
 {
-    public override float MateChance()
+    protected override float MateChance()
     {
-        return WoohooModSettings.woohooBabyChildChance;
+        return WoohooMod.instance.Settings.woohooBabyChildChance;
     }
 
-    public override bool IsMate(Pawn pawn, Pawn pawn2)
+    protected override bool IsMate(Pawn pawn, Pawn pawn2)
     {
         return true;
     }

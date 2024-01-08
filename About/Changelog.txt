@@ -1,5 +1,8 @@
 # Changelog for Woohooer
 
+1.4.2 - Fixed settings not being saved
+
+
 1.4.1 - Updated for 1.4, thanks to HR-SPC, killathon and bradson!.
 Used DeepL to update translations for ChineseSimplified, French, German
 

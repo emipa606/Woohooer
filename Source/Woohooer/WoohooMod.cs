@@ -10,15 +10,20 @@ namespace DarkIntentionsWoohoo.mod.settings;
 internal class WoohooMod : Mod
 {
     private static string currentVersion;
+    public static WoohooMod instance;
 
     public WoohooMod(ModContentPack content)
         : base(content)
     {
+        instance = this;
         var harmony = new Harmony("DarkIntentionsWoohoo.mod.settings.harmony");
         harmony.PatchAll(Assembly.GetExecutingAssembly());
         currentVersion =
             VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
+        Settings = GetSettings<WoohooModSettings>();
     }
+
+    internal WoohooModSettings Settings { get; }
 
     public static void LogMessage(string message)
     {
@@ -41,34 +46,34 @@ internal class WoohooMod : Mod
         listing_Standard.Begin(inRect);
 
         listing_Standard.Label(
-            "Whohooer.woohooChildChance".Translate(WoohooModSettings.woohooChildChance.ToStringPercent()));
-        WoohooModSettings.woohooChildChance = listing_Standard.Slider(WoohooModSettings.woohooChildChance, 0f, 1f);
+            "Whohooer.woohooChildChance".Translate(Settings.woohooChildChance.ToStringPercent()));
+        Settings.woohooChildChance = listing_Standard.Slider(Settings.woohooChildChance, 0f, 1f);
         listing_Standard.Gap();
 
         listing_Standard.Label(
-            "Whohooer.woohooBabyChildChance".Translate(WoohooModSettings.woohooBabyChildChance.ToStringPercent()));
-        WoohooModSettings.woohooBabyChildChance =
-            listing_Standard.Slider(WoohooModSettings.woohooBabyChildChance, 0f, 1f);
+            "Whohooer.woohooBabyChildChance".Translate(Settings.woohooBabyChildChance.ToStringPercent()));
+        Settings.woohooBabyChildChance =
+            listing_Standard.Slider(Settings.woohooBabyChildChance, 0f, 1f);
         listing_Standard.Gap();
 
-        listing_Standard.Label("Whohooer.familyWeight".Translate(WoohooModSettings.familyWeight.ToStringPercent()));
-        WoohooModSettings.familyWeight = listing_Standard.Slider(WoohooModSettings.familyWeight, 0f, 1f);
+        listing_Standard.Label("Whohooer.familyWeight".Translate(Settings.familyWeight.ToStringPercent()));
+        Settings.familyWeight = listing_Standard.Slider(Settings.familyWeight, 0f, 1f);
         listing_Standard.Gap();
 
-        listing_Standard.Label("Whohooer.lovedItChance".Translate(WoohooModSettings.lovedItChance.ToStringPercent()));
-        WoohooModSettings.lovedItChance = listing_Standard.Slider(WoohooModSettings.lovedItChance, 0f, 1f);
+        listing_Standard.Label("Whohooer.lovedItChance".Translate(Settings.lovedItChance.ToStringPercent()));
+        Settings.lovedItChance = listing_Standard.Slider(Settings.lovedItChance, 0f, 1f);
         listing_Standard.Gap();
 
-        listing_Standard.CheckboxLabeled("Whohooer.sameGender".Translate(), ref WoohooModSettings.sameGender);
+        listing_Standard.CheckboxLabeled("Whohooer.sameGender".Translate(), ref Settings.sameGender);
         listing_Standard.CheckboxLabeled("Whohooer.restrictToAdults".Translate(),
-            ref WoohooModSettings.restrictToAdults);
+            ref Settings.restrictToAdults);
         listing_Standard.Gap();
 
-        listing_Standard.CheckboxLabeled("Whohooer.allowAIWoohoo".Translate(), ref WoohooModSettings.allowAIWoohoo);
-        if (WoohooModSettings.allowAIWoohoo)
+        listing_Standard.CheckboxLabeled("Whohooer.allowAIWoohoo".Translate(), ref Settings.allowAIWoohoo);
+        if (Settings.allowAIWoohoo)
         {
-            listing_Standard.Label("Whohooer.minAITicks".Translate(WoohooModSettings.minAITicks.ToStringTicksToDays()));
-            WoohooModSettings.minAITicks = (int)listing_Standard.Slider(WoohooModSettings.minAITicks, 1000f, 1000000f);
+            listing_Standard.Label("Whohooer.minAITicks".Translate(Settings.minAITicks.ToStringTicksToDays()));
+            Settings.minAITicks = (int)listing_Standard.Slider(Settings.minAITicks, 1000f, 1000000f);
         }
 
         listing_Standard.GapLine();

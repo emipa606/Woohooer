@@ -60,13 +60,13 @@ internal class MemoryManager
         }
 
         addMemory(mate, WoohooColonist);
-        if (Rand.Value < WoohooModSettings.lovedItChance)
+        if (Rand.Value < WoohooMod.instance.Settings.lovedItChance)
         {
             addMemoryOfOther(mate, ThoughtDefOf.GotSomeLovin, pawn);
         }
 
         addMemory(pawn, WoohooColonist);
-        if (Rand.Value < WoohooModSettings.lovedItChance)
+        if (Rand.Value < WoohooMod.instance.Settings.lovedItChance)
         {
             addMemoryOfOther(pawn, ThoughtDefOf.GotSomeLovin, mate);
         }

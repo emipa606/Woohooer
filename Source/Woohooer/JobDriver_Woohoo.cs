@@ -90,7 +90,7 @@ internal class JobDriver_Woohoo : JobDriver
                JobInBedUtility.InBedOrRestSpotNow(TargetA.Thing as Pawn, TargetB);
     }
 
-    public virtual bool isMakeBaby()
+    protected virtual bool isMakeBaby()
     {
         return false;
     }
