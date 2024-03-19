@@ -12,8 +12,8 @@ internal class JobDriver_Woohoo : JobDriver
 {
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        if (!(TargetA != null) || TargetA.Thing == null || !(TargetA.Thing is Pawn mate) || !(TargetB != null) ||
-            TargetB.Thing == null || !(TargetB.Thing is Building_Bed building_Bed) || pawn == null ||
+        if (!(TargetA != null) || TargetA.Thing is not Pawn mate || !(TargetB != null) ||
+            TargetB.Thing is not Building_Bed building_Bed || pawn == null ||
             !PawnHelper.IsSameRaceHumanoid(pawn, mate) || building_Bed.IsBurning())
         {
             Log.Error($"[{pawn?.Name}] can't woohoo right.");

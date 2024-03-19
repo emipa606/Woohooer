@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="ImplantHediffBase">
+    <defName>BionicWomb</defName>
+    <label>Artifical Womb</label>
+    <labelNoun>an artificial womb</labelNoun>
+    <description>A bionic baby oven. why people invented these? so your kobolds can get pregnant.</description>
+  </HediffDef>
+  <HediffDef ParentName="ImplantHediffBase">
+    <defName>GivingBirth</defName>
+    <label>Giving Birth</label>
+    <description>OMG! My water!</description>
+    <labelNoun>OMG! My water!</labelNoun>
+    <hediffClass>DarkIntentionsWoohoo.HeDiffPrisonerGivingBirth</hediffClass>
+  </HediffDef>
+</Defs>
