@@ -15,8 +15,8 @@ internal static class WoohooManager
         var t = new Toil
         {
             socialMode = RandomSocialMode.Off,
-            tickAction = NewFunction,
-            initAction = NewFunction
+            tickAction = newFunction,
+            initAction = newFunction
         };
         t.AddEndCondition(() =>
             mate.IsNotWoohooing() && tick-- > 0 ? JobCondition.Ongoing : JobCondition.Succeeded);
@@ -24,7 +24,7 @@ internal static class WoohooManager
         yield return t;
         yield break;
 
-        void NewFunction()
+        void newFunction()
         {
             if (!mate.IsNotWoohooing())
             {
@@ -61,7 +61,7 @@ internal static class WoohooManager
                     pawn.jobs.posture = PawnPosture.LayingInBed;
                 }
             },
-            tickAction = delegate { pawn?.GainComfortFromCellIfPossible(); }
+            tickIntervalAction = delegate(int delta) { pawn?.GainComfortFromCellIfPossible(delta); }
         };
         layDown.AddFinishAction(delegate
         {
@@ -89,12 +89,12 @@ internal static class WoohooManager
         HookupBedmanager hookupBedmanager)
     {
         yield return ToilerHelper.GotoThing(pawn, mate);
-        yield return AskForWoohoo(pawn, mate, bed, askSuccess);
+        yield return askForWoohoo(pawn, mate, askSuccess);
         if (askSuccess)
         {
             yield return new Toil
             {
-                initAction = delegate { hookupBedmanager.claim(pawn, mate); },
+                initAction = delegate { hookupBedmanager.Claim(pawn, mate); },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
             yield break;
@@ -112,7 +112,7 @@ internal static class WoohooManager
         };
     }
 
-    public static Toil AskForWoohoo(Pawn pawn, Pawn mate, Building_Bed bed, bool askSuccess)
+    private static Toil askForWoohoo(Pawn pawn, Pawn mate, bool askSuccess)
     {
         var reply = askSuccess ? FleckDefOf.Heart : FleckDefOf.SleepZ;
         var toil = new Toil

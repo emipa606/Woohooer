@@ -7,10 +7,10 @@ internal static class FertilityChecker
 {
     public static bool is_fertile(Pawn pawn)
     {
-        return getFertility(pawn) > Constants.MINIMUM_REPO;
+        return GetFertility(pawn) > Constants.MINIMUM_REPO;
     }
 
-    public static float getFertility(Pawn pawn)
+    public static float GetFertility(Pawn pawn)
     {
         if (alreadyPregnant(pawn))
         {
@@ -23,12 +23,8 @@ internal static class FertilityChecker
         }
 
         float level;
-        if (Constants.Fertility != null && (level = pawn.health.capacities.GetLevel(Constants.Fertility)) >= 0f)
-        {
-            return level;
-        }
-
-        if (Constants.Reproduction != null && (level = pawn.health.capacities.GetLevel(Constants.Reproduction)) >= 0f)
+        if (Constants.Fertility != null && (level = pawn.health.capacities.GetLevel(Constants.Fertility)) >= 0f ||
+            Constants.Reproduction != null && (level = pawn.health.capacities.GetLevel(Constants.Reproduction)) >= 0f)
         {
             return level;
         }
@@ -36,7 +32,7 @@ internal static class FertilityChecker
         return pawn.ageTracker.CurLifeStage.reproductive ? 1f : 0f;
     }
 
-    public static bool alreadyPregnant(Pawn pawn)
+    private static bool alreadyPregnant(Pawn pawn)
     {
         return pawn.health.hediffSet.HasHediff(HediffDefOf.Pregnant);
     }
@@ -46,7 +42,7 @@ internal static class FertilityChecker
         return pawn.gender == Gender.Female || hasBionicWomb(pawn);
     }
 
-    public static bool hasBionicWomb(Pawn pawn)
+    private static bool hasBionicWomb(Pawn pawn)
     {
         return pawn.health.hediffSet.HasHediff(Constants.BionicWomb);
     }

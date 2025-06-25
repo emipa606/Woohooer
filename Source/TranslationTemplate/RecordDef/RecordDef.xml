@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Times asked for WooHoo -->
+  <CountAskedForWoohoo.label>Times asked for WooHoo</CountAskedForWoohoo.label>
+  <!-- EN: The number of times I asked someone to woohoo. -->
+  <CountAskedForWoohoo.description>The number of times I asked someone to woohoo.</CountAskedForWoohoo.description>
+  <!-- EN: Got Asked to WooHoo -->
+  <CountGotAskedToWooHoo.label>Got Asked to WooHoo</CountGotAskedToWooHoo.label>
+  <!-- EN: How many times someone asked for a woohoo with me. -->
+  <CountGotAskedToWooHoo.description>How many times someone asked for a woohoo with me.</CountGotAskedToWooHoo.description>
+  <!-- EN: WooHoo's Declined -->
+  <CountGotAskedToWooHooSaidNo.label>WooHoo's Declined</CountGotAskedToWooHooSaidNo.label>
+  <!-- EN: How many times I was asked to woohoo and said no. -->
+  <CountGotAskedToWooHooSaidNo.description>How many times I was asked to woohoo and said no.</CountGotAskedToWooHooSaidNo.description>
+  <!-- EN: Prison Mishaps and horrific memories -->
+  <HorrificMemories.label>Prison Mishaps and horrific memories</HorrificMemories.label>
+  <!-- EN: Count of bad things that happened to me. -->
+  <HorrificMemories.description>Count of bad things that happened to me.</HorrificMemories.description>
+  <!-- EN: WooHoos Pregnant From -->
+  <TimesWooHooedGotPregnant.label>WooHoos Pregnant From</TimesWooHooedGotPregnant.label>
+  <!-- EN: Count of WooHoos where I got pregnant -->
+  <TimesWooHooedGotPregnant.description>Count of WooHoos where I got pregnant</TimesWooHooedGotPregnant.description>
+</LanguageData>

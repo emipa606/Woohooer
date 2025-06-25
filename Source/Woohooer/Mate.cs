@@ -7,7 +7,7 @@ namespace DarkIntentionsWoohoo;
 
 public class Mate
 {
-    private static readonly AccessTools.FieldRef<float> _pregnancyChance =
+    private static readonly AccessTools.FieldRef<float> pregnancyChance =
         AccessTools.StaticFieldRefAccess<float>(AccessTools.Field(typeof(JobDriver_Lovin), "PregnancyChance"));
 
     public static void Mated(Pawn donor, Pawn hasWomb, bool isMakeBaby = false)
@@ -21,7 +21,7 @@ public class Mate
             }
 
             WoohooMod.LogMessage($"[{hasWomb.Name}] found Biotech");
-            var chance = Rand.Chance(_pregnancyChance() * PregnancyUtility.PregnancyChanceForPartners(hasWomb, donor));
+            var chance = Rand.Chance(pregnancyChance() * PregnancyUtility.PregnancyChanceForPartners(hasWomb, donor));
             if (donor != null && chance)
             {
                 var hediff_Pregnant = (Hediff_Pregnant)HediffMaker.MakeHediff(HediffDefOf.PregnantHuman, hasWomb);
@@ -46,7 +46,7 @@ public class Mate
         }
     }
 
-    public static void DefaultMate(Pawn donor, Pawn womb)
+    private static void DefaultMate(Pawn donor, Pawn womb)
     {
         PawnUtility.Mated(donor, womb);
     }

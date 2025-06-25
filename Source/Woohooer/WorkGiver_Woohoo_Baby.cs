@@ -8,7 +8,7 @@ internal class WorkGiver_Woohoo_Baby : WorkGiver_Woohoo
 {
     protected override float MateChance()
     {
-        return WoohooMod.instance.Settings.woohooBabyChildChance;
+        return WoohooMod.Instance.Settings.WoohooBabyChildChance;
     }
 
     protected override bool IsMate(Pawn pawn, Pawn pawn2)
@@ -31,13 +31,7 @@ internal class WorkGiver_Woohoo_Baby : WorkGiver_Woohoo
             return false;
         }
 
-        if (mate != null && pawn.gender == mate.gender)
-        {
-            JobFailReason.Is("Whohooer.NotFertile".Translate(pawn.Name.ToStringShort));
-            return false;
-        }
-
-        if (!FertilityChecker.is_fertile(pawn))
+        if (mate != null && pawn.gender == mate.gender || !FertilityChecker.is_fertile(pawn))
         {
             JobFailReason.Is("Whohooer.NotFertile".Translate(pawn.Name.ToStringShort));
             return false;

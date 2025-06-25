@@ -7,23 +7,23 @@ namespace DarkIntentionsWoohoo;
 
 internal class MemoryManager
 {
-    public static readonly ThoughtDef PrisonerWoohoo = DefDatabase<ThoughtDef>.GetNamed("PrisonerWoohoo");
+    private static readonly ThoughtDef prisonerWoohoo = DefDatabase<ThoughtDef>.GetNamed("PrisonerWoohoo");
 
-    public static readonly ThoughtDef MasochistPrisonerWoohoo =
+    private static readonly ThoughtDef masochistPrisonerWoohoo =
         DefDatabase<ThoughtDef>.GetNamed("MasochistPrisonerWoohoo");
 
-    public static readonly ThoughtDef PrisonerWoohooMemory = DefDatabase<ThoughtDef>.GetNamed("PrisonerWoohooMemory");
+    private static readonly ThoughtDef prisonerWoohooMemory = DefDatabase<ThoughtDef>.GetNamed("PrisonerWoohooMemory");
 
-    public static readonly ThoughtDef MasochistPrisonerWoohooMemory =
+    private static readonly ThoughtDef masochistPrisonerWoohooMemory =
         DefDatabase<ThoughtDef>.GetNamed("MasochistPrisonerWoohooMemory");
 
-    public static readonly ThoughtDef WoohooColonist = DefDatabase<ThoughtDef>.GetNamed("WoohooColonist");
-    public static readonly ThoughtDef WoohooColonistRegret = DefDatabase<ThoughtDef>.GetNamed("WoohooColonistRegret");
-    public static readonly ThoughtDef WoohooNeutral = DefDatabase<ThoughtDef>.GetNamed("WoohooNeutral");
-    public static readonly ThoughtDef WoohooKink = DefDatabase<ThoughtDef>.GetNamed("WoohooKink");
-    public static readonly ThoughtDef WoohooKinkMemory = DefDatabase<ThoughtDef>.GetNamed("WoohooKinkMemory");
+    private static readonly ThoughtDef woohooColonist = DefDatabase<ThoughtDef>.GetNamed("WoohooColonist");
+    private static readonly ThoughtDef woohooColonistRegret = DefDatabase<ThoughtDef>.GetNamed("WoohooColonistRegret");
+    private static readonly ThoughtDef woohooNeutral = DefDatabase<ThoughtDef>.GetNamed("WoohooNeutral");
+    private static readonly ThoughtDef woohooKink = DefDatabase<ThoughtDef>.GetNamed("WoohooKink");
+    private static readonly ThoughtDef woohooKinkMemory = DefDatabase<ThoughtDef>.GetNamed("WoohooKinkMemory");
 
-    public static Toil addMoodletsToil(Pawn pawn, Pawn mate)
+    public static Toil AddMoodletsToil(Pawn pawn, Pawn mate)
     {
         return new Toil
         {
@@ -32,13 +32,9 @@ internal class MemoryManager
         };
     }
 
-    public static void addMoodlets(Pawn pawn, Pawn mate)
+    private static void addMoodlets(Pawn pawn, Pawn mate)
     {
-        if (mate.guest is { IsPrisoner: true })
-        {
-            addPrisonMoodlets(pawn, mate);
-        }
-        else if (mate.guest is { IsPrisoner: true })
+        if (mate.guest is { IsPrisoner: true } or { IsPrisoner: true })
         {
             addPrisonMoodlets(pawn, mate);
         }
@@ -52,21 +48,21 @@ internal class MemoryManager
     {
         if (isKinky(pawn) && isKinky(mate) || PawnHelper.IsStranger(pawn, mate))
         {
-            addMemory(mate, WoohooKink);
-            addMemoryOfOther(mate, WoohooKinkMemory, pawn);
-            addMemory(pawn, WoohooKink);
-            addMemoryOfOther(pawn, WoohooKinkMemory, mate);
+            addMemory(mate, woohooKink);
+            addMemoryOfOther(mate, woohooKinkMemory, pawn);
+            addMemory(pawn, woohooKink);
+            addMemoryOfOther(pawn, woohooKinkMemory, mate);
             return;
         }
 
-        addMemory(mate, WoohooColonist);
-        if (Rand.Value < WoohooMod.instance.Settings.lovedItChance)
+        addMemory(mate, woohooColonist);
+        if (Rand.Value < WoohooMod.Instance.Settings.LovedItChance)
         {
             addMemoryOfOther(mate, ThoughtDefOf.GotSomeLovin, pawn);
         }
 
-        addMemory(pawn, WoohooColonist);
-        if (Rand.Value < WoohooMod.instance.Settings.lovedItChance)
+        addMemory(pawn, woohooColonist);
+        if (Rand.Value < WoohooMod.Instance.Settings.LovedItChance)
         {
             addMemoryOfOther(pawn, ThoughtDefOf.GotSomeLovin, mate);
         }
@@ -82,41 +78,41 @@ internal class MemoryManager
         victim.records.Increment(Constants.HorrificMemories);
         if (torturer.IsBloodlust() || torturer.IsPsychopath())
         {
-            addMemory(torturer, WoohooColonist);
+            addMemory(torturer, woohooColonist);
         }
         else if (torturer.IsKind())
         {
-            addMemory(torturer, WoohooColonistRegret);
+            addMemory(torturer, woohooColonistRegret);
         }
         else
         {
-            addMemory(torturer, WoohooNeutral);
+            addMemory(torturer, woohooNeutral);
         }
 
         if (victim.IsMasochist())
         {
-            addMemory(victim, MasochistPrisonerWoohoo);
-            addMemoryOfOther(victim, MasochistPrisonerWoohooMemory, torturer);
+            addMemory(victim, masochistPrisonerWoohoo);
+            addMemoryOfOther(victim, masochistPrisonerWoohooMemory, torturer);
             return;
         }
 
-        addMemory(victim, PrisonerWoohoo);
+        addMemory(victim, prisonerWoohoo);
         if (victim.IsPsychopath() || victim.IsBloodlust())
         {
-            addMemoryOfOther(victim, WoohooNeutral, torturer);
+            addMemoryOfOther(victim, woohooNeutral, torturer);
         }
         else
         {
-            addMemoryOfOther(victim, PrisonerWoohooMemory, torturer);
+            addMemoryOfOther(victim, prisonerWoohooMemory, torturer);
         }
     }
 
-    public static void addMemory(Pawn p, ThoughtDef thoughtDef)
+    private static void addMemory(Pawn p, ThoughtDef thoughtDef)
     {
         p.needs.mood.thoughts.memories.TryGainMemory(thoughtDef);
     }
 
-    public static void addMemoryOfOther(Pawn p, ThoughtDef thoughtDef, Pawn other)
+    private static void addMemoryOfOther(Pawn p, ThoughtDef thoughtDef, Pawn other)
     {
         p.needs.mood.thoughts.memories.TryGainMemory(thoughtDef, other);
     }

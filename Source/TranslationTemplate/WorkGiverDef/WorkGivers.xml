@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Woohoo -->
+  <Woohoo.label>Woohoo</Woohoo.label>
+  <!-- EN: woohooing -->
+  <Woohoo.gerund>woohooing</Woohoo.gerund>
+  <!-- EN: woohoo -->
+  <Woohoo.verb>woohoo</Woohoo.verb>
+  <!-- EN: Woohoo for Baby -->
+  <Woohoo_Baby.label>Woohoo for Baby</Woohoo_Baby.label>
+  <!-- EN: woohooing for a baby -->
+  <Woohoo_Baby.gerund>woohooing for a baby</Woohoo_Baby.gerund>
+  <!-- EN: woohoo for baby -->
+  <Woohoo_Baby.verb>woohoo for baby</Woohoo_Baby.verb>
+</LanguageData>

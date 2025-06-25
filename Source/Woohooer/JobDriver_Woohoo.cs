@@ -13,8 +13,8 @@ internal class JobDriver_Woohoo : JobDriver
     protected override IEnumerable<Toil> MakeNewToils()
     {
         if (!(TargetA != null) || TargetA.Thing is not Pawn mate || !(TargetB != null) ||
-            TargetB.Thing is not Building_Bed building_Bed || pawn == null ||
-            !PawnHelper.IsSameRaceHumanoid(pawn, mate) || building_Bed.IsBurning())
+            TargetB.Thing is not Building_Bed buildingBed || pawn == null ||
+            !PawnHelper.IsSameRaceHumanoid(pawn, mate) || buildingBed.IsBurning())
         {
             Log.Error($"[{pawn?.Name}] can't woohoo right.");
             EndJobWith(JobCondition.Errored);
@@ -26,15 +26,15 @@ internal class JobDriver_Woohoo : JobDriver
             throw new Exception("You cant WooHoo Alone and Together with yourself");
         }
 
-        var hookupBedmanager = new HookupBedmanager(building_Bed);
+        var hookupBedmanager = new HookupBedmanager(buildingBed);
         bool askSuccess;
         IEnumerable<Toil> first;
         if (mate.IsNotWoohooing())
         {
             pawn.records.Increment(Constants.CountAskedForWoohoo);
             mate.records.Increment(Constants.CountGotAskedToWooHoo);
-            askSuccess = AskPartner(pawn, mate);
-            first = WoohooManager.ToilsAskForWoohoo(pawn, mate, building_Bed, askSuccess, hookupBedmanager);
+            askSuccess = askPartner(pawn, mate);
+            first = WoohooManager.ToilsAskForWoohoo(pawn, mate, buildingBed, askSuccess, hookupBedmanager);
         }
         else
         {
@@ -44,10 +44,10 @@ internal class JobDriver_Woohoo : JobDriver
 
         if (askSuccess)
         {
-            first = first.Union(WoohooManager.MakePartnerWoohoo(pawn, mate, building_Bed))
-                .Union(WoohooManager.AnimateLovin(pawn, mate, building_Bed))
-                .Union(MakeMyLoveToils(pawn, mate))
-                .Union(WoohooManager.AnimateLovin(pawn, mate, building_Bed,
+            first = first.Union(WoohooManager.MakePartnerWoohoo(pawn, mate, buildingBed))
+                .Union(WoohooManager.AnimateLovin(pawn, mate, buildingBed))
+                .Union(makeMyLoveToils(pawn, mate))
+                .Union(WoohooManager.AnimateLovin(pawn, mate, buildingBed,
                     delegate { WoohooMod.LogMessage("We're done animating on main job."); }, 500));
         }
         else
@@ -60,18 +60,18 @@ internal class JobDriver_Woohoo : JobDriver
         return first;
     }
 
-    private IEnumerable<Toil> nothing()
+    private static IEnumerable<Toil> nothing()
     {
         yield break;
     }
 
-    private bool AskPartner(Pawn asker, Pawn mate)
+    private static bool askPartner(Pawn asker, Pawn mate)
     {
         return asker != null && mate != null &&
                (JailHelper.IsThisJailLovin(asker, mate) || !PawnHelper.IsStranger(asker, mate) || Rand.Bool);
     }
 
-    public IEnumerable<Toil> MakeMyLoveToils(Pawn asker, Pawn mate)
+    private IEnumerable<Toil> makeMyLoveToils(Pawn asker, Pawn mate)
     {
         if (!asker.IsPsychopath() && PawnHelper.IsStranger(asker, mate) &&
             !JailHelper.IsThisJailLovin(asker, mate))
@@ -79,9 +79,9 @@ internal class JobDriver_Woohoo : JobDriver
             Toils_Interpersonal.TryRecruit(TargetIndex.A);
         }
 
-        yield return MemoryManager.addMoodletsToil(asker, mate);
+        yield return MemoryManager.AddMoodletsToil(asker, mate);
 
-        yield return BabyMaker.DoMakeBaby(asker, mate, isMakeBaby());
+        yield return BabyMaker.DoMakeBaby(asker, mate, IsMakeBaby());
     }
 
     public override bool CanBeginNowWhileLyingDown()
@@ -90,7 +90,7 @@ internal class JobDriver_Woohoo : JobDriver
                JobInBedUtility.InBedOrRestSpotNow(TargetA.Thing as Pawn, TargetB);
     }
 
-    protected virtual bool isMakeBaby()
+    protected virtual bool IsMakeBaby()
     {
         return false;
     }

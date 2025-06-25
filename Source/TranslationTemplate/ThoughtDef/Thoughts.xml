@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: enjoyed prison woohoo -->
+  <MasochistPrisonerWoohoo.stages.enjoyed_prison_woohoo.label>enjoyed prison woohoo</MasochistPrisonerWoohoo.stages.enjoyed_prison_woohoo.label>
+  <!-- EN: enjoyed prison woohoo -->
+  <MasochistPrisonerWoohoo.stages.enjoyed_prison_woohoo.description>enjoyed prison woohoo</MasochistPrisonerWoohoo.stages.enjoyed_prison_woohoo.description>
+  <!-- EN: Woohoo with a colonist -->
+  <MasochistPrisonerWoohooMemory.stages.Woohoo_with_a_colonist.label>Woohoo with a colonist</MasochistPrisonerWoohooMemory.stages.Woohoo_with_a_colonist.label>
+  <!-- EN: I Woohoo with {0}, I liked it. -->
+  <MasochistPrisonerWoohooMemory.stages.Woohoo_with_a_colonist.description>I Woohoo with {0}, I liked it.</MasochistPrisonerWoohooMemory.stages.Woohoo_with_a_colonist.description>
+  <!-- EN: missed period -->
+  <Pregnant.stages.missed_period.label>missed period</Pregnant.stages.missed_period.label>
+  <!-- EN: I haven't had my period, I'm hopeful! -->
+  <Pregnant.stages.missed_period.description>I haven't had my period, I'm hopeful!</Pregnant.stages.missed_period.description>
+  <!-- EN: guard was a pervert -->
+  <PrisonerWoohoo.stages.guard_was_a_pervert.label>guard was a pervert</PrisonerWoohoo.stages.guard_was_a_pervert.label>
+  <!-- EN: Guard and I did something I won't look back on kindly. -->
+  <PrisonerWoohoo.stages.guard_was_a_pervert.description>Guard and I did something I won't look back on kindly.</PrisonerWoohoo.stages.guard_was_a_pervert.description>
+  <!-- EN: woohoo with a guard -->
+  <PrisonerWoohooMemory.stages.woohoo_with_a_guard.label>woohoo with a guard</PrisonerWoohooMemory.stages.woohoo_with_a_guard.label>
+  <!-- EN: The Guard {0} is such a pervert. -->
+  <PrisonerWoohooMemory.stages.woohoo_with_a_guard.description>The Guard {0} is such a pervert.</PrisonerWoohooMemory.stages.woohoo_with_a_guard.description>
+  <!-- EN: woohoo -->
+  <WoohooColonist.stages.woohoo.label>woohoo</WoohooColonist.stages.woohoo.label>
+  <!-- EN: That was good. -->
+  <WoohooColonist.stages.woohoo.description>That was good.</WoohooColonist.stages.woohoo.description>
+  <!-- EN: regretful woohoo -->
+  <WoohooColonistRegret.stages.regretful_woohoo.label>regretful woohoo</WoohooColonistRegret.stages.regretful_woohoo.label>
+  <!-- EN: I might as well have forced myself on some prisoner, I'm a pervert. -->
+  <WoohooColonistRegret.stages.regretful_woohoo.description>I might as well have forced myself on some prisoner, I'm a pervert.</WoohooColonistRegret.stages.regretful_woohoo.description>
+  <!-- EN: kinky woohoo -->
+  <WoohooKink.stages.kinky_woohoo.label>kinky woohoo</WoohooKink.stages.kinky_woohoo.label>
+  <!-- EN: Yes! -->
+  <WoohooKink.stages.kinky_woohoo.description>Yes!</WoohooKink.stages.kinky_woohoo.description>
+  <!-- EN: kinky woohoo -->
+  <WoohooKinkMemory.stages.kinky_woohoo.label>kinky woohoo</WoohooKinkMemory.stages.kinky_woohoo.label>
+  <!-- EN: {0} and I got kinky. -->
+  <WoohooKinkMemory.stages.kinky_woohoo.description>{0} and I got kinky.</WoohooKinkMemory.stages.kinky_woohoo.description>
+  <!-- EN: mediocre woohoo -->
+  <WoohooNeutral.stages.mediocre_woohoo.label>mediocre woohoo</WoohooNeutral.stages.mediocre_woohoo.label>
+  <!-- EN: meh, maybe nex time. -->
+  <WoohooNeutral.stages.mediocre_woohoo.description>meh, maybe nex time.</WoohooNeutral.stages.mediocre_woohoo.description>
+</LanguageData>

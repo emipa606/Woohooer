@@ -10,12 +10,12 @@ namespace DarkIntentionsWoohoo.mod.settings;
 internal class WoohooMod : Mod
 {
     private static string currentVersion;
-    public static WoohooMod instance;
+    public static WoohooMod Instance;
 
     public WoohooMod(ModContentPack content)
         : base(content)
     {
-        instance = this;
+        Instance = this;
         var harmony = new Harmony("DarkIntentionsWoohoo.mod.settings.harmony");
         harmony.PatchAll(Assembly.GetExecutingAssembly());
         currentVersion =
@@ -42,51 +42,51 @@ internal class WoohooMod : Mod
 
     public override void DoSettingsWindowContents(Rect inRect)
     {
-        var listing_Standard = new Listing_Standard();
-        listing_Standard.Begin(inRect);
+        var listingStandard = new Listing_Standard();
+        listingStandard.Begin(inRect);
 
-        listing_Standard.Label(
-            "Whohooer.woohooChildChance".Translate(Settings.woohooChildChance.ToStringPercent()));
-        Settings.woohooChildChance = listing_Standard.Slider(Settings.woohooChildChance, 0f, 1f);
-        listing_Standard.Gap();
+        listingStandard.Label(
+            "Whohooer.woohooChildChance".Translate(Settings.WoohooChildChance.ToStringPercent()));
+        Settings.WoohooChildChance = listingStandard.Slider(Settings.WoohooChildChance, 0f, 1f);
+        listingStandard.Gap();
 
-        listing_Standard.Label(
-            "Whohooer.woohooBabyChildChance".Translate(Settings.woohooBabyChildChance.ToStringPercent()));
-        Settings.woohooBabyChildChance =
-            listing_Standard.Slider(Settings.woohooBabyChildChance, 0f, 1f);
-        listing_Standard.Gap();
+        listingStandard.Label(
+            "Whohooer.woohooBabyChildChance".Translate(Settings.WoohooBabyChildChance.ToStringPercent()));
+        Settings.WoohooBabyChildChance =
+            listingStandard.Slider(Settings.WoohooBabyChildChance, 0f, 1f);
+        listingStandard.Gap();
 
-        listing_Standard.Label("Whohooer.familyWeight".Translate(Settings.familyWeight.ToStringPercent()));
-        Settings.familyWeight = listing_Standard.Slider(Settings.familyWeight, 0f, 1f);
-        listing_Standard.Gap();
+        listingStandard.Label("Whohooer.familyWeight".Translate(Settings.FamilyWeight.ToStringPercent()));
+        Settings.FamilyWeight = listingStandard.Slider(Settings.FamilyWeight, 0f, 1f);
+        listingStandard.Gap();
 
-        listing_Standard.Label("Whohooer.lovedItChance".Translate(Settings.lovedItChance.ToStringPercent()));
-        Settings.lovedItChance = listing_Standard.Slider(Settings.lovedItChance, 0f, 1f);
-        listing_Standard.Gap();
+        listingStandard.Label("Whohooer.lovedItChance".Translate(Settings.LovedItChance.ToStringPercent()));
+        Settings.LovedItChance = listingStandard.Slider(Settings.LovedItChance, 0f, 1f);
+        listingStandard.Gap();
 
-        listing_Standard.CheckboxLabeled("Whohooer.sameGender".Translate(), ref Settings.sameGender);
-        listing_Standard.CheckboxLabeled("Whohooer.restrictToAdults".Translate(),
-            ref Settings.restrictToAdults);
-        listing_Standard.Gap();
+        listingStandard.CheckboxLabeled("Whohooer.sameGender".Translate(), ref Settings.SameGender);
+        listingStandard.CheckboxLabeled("Whohooer.restrictToAdults".Translate(),
+            ref Settings.RestrictToAdults);
+        listingStandard.Gap();
 
-        listing_Standard.CheckboxLabeled("Whohooer.allowAIWoohoo".Translate(), ref Settings.allowAIWoohoo);
-        if (Settings.allowAIWoohoo)
+        listingStandard.CheckboxLabeled("Whohooer.allowAIWoohoo".Translate(), ref Settings.AllowAIWoohoo);
+        if (Settings.AllowAIWoohoo)
         {
-            listing_Standard.Label("Whohooer.minAITicks".Translate(Settings.minAITicks.ToStringTicksToDays()));
-            Settings.minAITicks = (int)listing_Standard.Slider(Settings.minAITicks, 1000f, 1000000f);
+            listingStandard.Label("Whohooer.minAITicks".Translate(Settings.MinAITicks.ToStringTicksToDays()));
+            Settings.MinAITicks = (int)listingStandard.Slider(Settings.MinAITicks, 1000f, 1000000f);
         }
 
-        listing_Standard.GapLine();
-        listing_Standard.Label("Whohooer.Credit".Translate());
+        listingStandard.GapLine();
+        listingStandard.Label("Whohooer.Credit".Translate());
         if (currentVersion != null)
         {
-            listing_Standard.Gap();
+            listingStandard.Gap();
             GUI.contentColor = Color.gray;
-            listing_Standard.Label("Whohooer.Version".Translate(currentVersion));
+            listingStandard.Label("Whohooer.Version".Translate(currentVersion));
             GUI.contentColor = Color.white;
         }
 
-        listing_Standard.End();
+        listingStandard.End();
         base.DoSettingsWindowContents(inRect);
     }
 }

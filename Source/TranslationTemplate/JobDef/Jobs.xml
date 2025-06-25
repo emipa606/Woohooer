@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Attempting Woohoo with TargetA at TargetB. -->
+  <WooHoo.reportString>Attempting Woohoo with TargetA at TargetB.</WooHoo.reportString>
+  <!-- EN: Attempting Woohoo for a Baby with TargetA at TargetB. -->
+  <WooHoo_Baby.reportString>Attempting Woohoo for a Baby with TargetA at TargetB.</WooHoo_Baby.reportString>
+  <!-- EN: Convinced to WooHoo with TargetA at TargetB. -->
+  <WooHoo_Get.reportString>Convinced to WooHoo with TargetA at TargetB.</WooHoo_Get.reportString>
+</LanguageData>

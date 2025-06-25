@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: install artificial womb -->
+  <InstallBionicWomb.label>install artificial womb</InstallBionicWomb.label>
+  <!-- EN: Install a womb. -->
+  <InstallBionicWomb.description>Install a womb.</InstallBionicWomb.description>
+  <!-- EN: Installing artificial womb. -->
+  <InstallBionicWomb.jobString>Installing artificial womb.</InstallBionicWomb.jobString>
+</LanguageData>

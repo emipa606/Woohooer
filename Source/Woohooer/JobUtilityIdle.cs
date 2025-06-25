@@ -18,12 +18,12 @@ public abstract class JobUtilityIdle
         JobDefOf.LayDown
     ];
 
-    public static bool isIdle(Pawn pawn)
+    public static bool IsIdle(Pawn pawn)
     {
         return pawn?.jobs != null && isIdleJob(pawn.jobs.curJob);
     }
 
-    public static bool isIdleJob(Job jobsCurJob)
+    private static bool isIdleJob(Job jobsCurJob)
     {
         return jobsCurJob == null || idleJobDefs.Contains(jobsCurJob.def);
     }

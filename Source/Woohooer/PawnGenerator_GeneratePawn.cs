@@ -4,8 +4,8 @@ using Verse;
 
 namespace DarkIntentionsWoohoo.harmony;
 
-[HarmonyPatch(typeof(PawnGenerator), "GeneratePawn", typeof(PawnGenerationRequest))]
-public static class PawnGenerator_GeneratePawn_Patch
+[HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn), typeof(PawnGenerationRequest))]
+public static class PawnGenerator_GeneratePawn
 {
     [HarmonyPostfix]
     public static void Postfix(ref Pawn __result, PawnGenerationRequest request)

@@ -33,13 +33,13 @@ public class HookupBedmanager
         {
             yield return new Toil
             {
-                initAction = GiveBack,
+                initAction = giveBack,
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
         }
     }
 
-    public void claim(Pawn bedPawn1, Pawn bedPawn2)
+    public void Claim(Pawn bedPawn1, Pawn bedPawn2)
     {
         if (bed == null)
         {
@@ -65,7 +65,7 @@ public class HookupBedmanager
         _ = claimBed(bed, bedPawn1) && claimBed(bed, bedPawn2);
     }
 
-    public void GiveBack()
+    private void giveBack()
     {
         if (bed == null)
         {
@@ -91,7 +91,7 @@ public class HookupBedmanager
         }
     }
 
-    public IEnumerable<Pawn> currentOwners()
+    private IEnumerable<Pawn> currentOwners()
     {
         if (bed.OwnersForReading != null && bed.OwnersForReading.Any())
         {
@@ -101,7 +101,7 @@ public class HookupBedmanager
         return (bed.OwnersForReading?.ToList()).AsEnumerable();
     }
 
-    public static bool claimBed(Building_Bed bed, Pawn pawn)
+    private static bool claimBed(Building_Bed bed, Pawn pawn)
     {
         if (pawn == null || bed == null)
         {
@@ -117,7 +117,7 @@ public class HookupBedmanager
         return true;
     }
 
-    public static void releaseBed(Building_Bed bed, Pawn pawn)
+    private static void releaseBed(Building_Bed bed, Pawn pawn)
     {
         if (pawn != null && bed != null)
         {

@@ -16,12 +16,8 @@ internal class BetterBedFinder
         }
 
         Building_Bed result;
-        if ((result = PawnBedBigEnough(pawn)) != null && canReach(mate, result))
-        {
-            return result;
-        }
-
-        if ((result = PawnBedBigEnough(mate)) != null && canReach(pawn, result))
+        if ((result = pawnBedBigEnough(pawn)) != null && canReach(mate, result) ||
+            (result = pawnBedBigEnough(mate)) != null && canReach(pawn, result))
         {
             return result;
         }
@@ -84,9 +80,9 @@ internal class BetterBedFinder
             building_Bed.SleepingSlotsCount);
     }
 
-    private static Building_Bed PawnBedBigEnough(Pawn pawn)
+    private static Building_Bed pawnBedBigEnough(Pawn pawn)
     {
-        var building_Bed = pawn?.CurrentBed();
-        return building_Bed is { SleepingSlotsCount: >= 1 } ? building_Bed : null;
+        var buildingBed = pawn?.CurrentBed();
+        return buildingBed is { SleepingSlotsCount: >= 1 } ? buildingBed : null;
     }
 }

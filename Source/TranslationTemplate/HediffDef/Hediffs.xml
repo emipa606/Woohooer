@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Artifical Womb -->
+  <BionicWomb.label>Artifical Womb</BionicWomb.label>
+  <!-- EN: A bionic baby oven. why people invented these? so your kobolds can get pregnant. -->
+  <BionicWomb.description>A bionic baby oven. why people invented these? so your kobolds can get pregnant.</BionicWomb.description>
+  <!-- EN: an artificial womb -->
+  <BionicWomb.labelNoun>an artificial womb</BionicWomb.labelNoun>
+  <!-- EN: Giving Birth -->
+  <GivingBirth.label>Giving Birth</GivingBirth.label>
+  <!-- EN: OMG! My water! -->
+  <GivingBirth.description>OMG! My water!</GivingBirth.description>
+  <!-- EN: OMG! My water! -->
+  <GivingBirth.labelNoun>OMG! My water!</GivingBirth.labelNoun>
+</LanguageData>
