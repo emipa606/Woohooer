@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using DarkIntentionsWoohoo.mod.settings;
@@ -12,18 +11,19 @@ internal class JobDriver_Woohoo : JobDriver
 {
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        if (!(TargetA != null) || TargetA.Thing is not Pawn mate || !(TargetB != null) ||
+        if (TargetA == null || TargetA.Thing is not Pawn mate || TargetB == null ||
             TargetB.Thing is not Building_Bed buildingBed || pawn == null ||
             !PawnHelper.IsSameRaceHumanoid(pawn, mate) || buildingBed.IsBurning())
         {
             Log.Error($"[{pawn?.Name}] can't woohoo right.");
             EndJobWith(JobCondition.Errored);
-            return null;
+            return new List<Toil>();
         }
 
         if (pawn == mate)
         {
-            throw new Exception("You cant WooHoo Alone and Together with yourself");
+            Log.ErrorOnce("You cant WooHoo Alone and Together with yourself", pawn.GetHashCode());
+            return new List<Toil>();
         }
 
         var hookupBedmanager = new HookupBedmanager(buildingBed);
@@ -106,10 +106,7 @@ internal class JobDriver_Woohoo : JobDriver
 
         WoohooMod.LogMessage(
             $"[{pawn?.Name}] can't woohoo right. Timing out their lovin for 500 ticks. They tried to some weird stuff:{GetReport()}");
-        if (pawn != null)
-        {
-            pawn.mindState.canLovinTick = Find.TickManager.TicksGame + 500;
-        }
+        pawn?.mindState.canLovinTick = Find.TickManager.TicksGame + 500;
 
         return false;
     }

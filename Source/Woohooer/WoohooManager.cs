@@ -56,10 +56,7 @@ internal static class WoohooManager
             initAction = delegate
             {
                 pawn?.pather?.StopDead();
-                if (pawn?.jobs != null)
-                {
-                    pawn.jobs.posture = PawnPosture.LayingInBed;
-                }
+                pawn?.jobs?.posture = PawnPosture.LayingInBed;
             },
             tickIntervalAction = delegate(int delta) { pawn?.GainComfortFromCellIfPossible(delta); }
         };

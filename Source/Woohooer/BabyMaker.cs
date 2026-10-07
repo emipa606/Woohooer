@@ -4,7 +4,7 @@ using Verse.AI;
 
 namespace DarkIntentionsWoohoo;
 
-internal class BabyMaker
+internal static class BabyMaker
 {
     public static Toil DoMakeBaby(Pawn pawn, Pawn target, bool isMakeBaby)
     {

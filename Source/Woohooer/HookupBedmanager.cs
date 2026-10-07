@@ -72,12 +72,9 @@ public class HookupBedmanager
             return;
         }
 
-        foreach (var item in currentOwners())
+        foreach (var item in currentOwners().Where(item => owners == null || !owners.Contains(item)))
         {
-            if (owners == null || !owners.Contains(item))
-            {
-                releaseBed(bed, item);
-            }
+            releaseBed(bed, item);
         }
 
         if (owners == null)

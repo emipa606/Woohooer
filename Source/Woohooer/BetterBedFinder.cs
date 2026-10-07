@@ -6,7 +6,7 @@ using Verse.AI;
 
 namespace DarkIntentionsWoohoo;
 
-internal class BetterBedFinder
+internal static class BetterBedFinder
 {
     public static Building_Bed DoBetterBedFinder(Pawn pawn, Pawn mate)
     {

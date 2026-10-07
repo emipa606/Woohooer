@@ -5,7 +5,7 @@ using Verse;
 
 namespace DarkIntentionsWoohoo;
 
-public class Mate
+public static class Mate
 {
     private static readonly AccessTools.FieldRef<float> pregnancyChance =
         AccessTools.StaticFieldRefAccess<float>(AccessTools.Field(typeof(JobDriver_Lovin), "PregnancyChance"));

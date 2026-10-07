@@ -64,12 +64,13 @@ internal class WorkGiver_Woohoo : WorkGiver_Scanner
         return false;
     }
 
-    private bool canAutoLove(Pawn pawn, Pawn pawn2)
+    private static bool canAutoLove(Pawn pawn, Pawn pawn2)
     {
         var ticksGame = Find.TickManager.TicksGame;
         if (!WoohooMod.Instance.Settings.AllowAIWoohoo || pawn.mindState.canLovinTick >= ticksGame ||
             pawn2.mindState.canLovinTick >= ticksGame || !JobUtilityIdle.IsIdle(pawn2) ||
-            pawn2.needs?.joy?.tolerances == null || pawn.needs?.joy?.tolerances == null)
+            pawn2.needs?.joy?.tolerances == null || pawn.needs?.joy?.tolerances == null ||
+            pawn.story.traits.HasTrait(TraitDefOf.Asexual) || pawn2.story.traits.HasTrait(TraitDefOf.Asexual))
         {
             return false;
         }

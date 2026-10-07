@@ -5,7 +5,7 @@ using Verse.AI;
 
 namespace DarkIntentionsWoohoo;
 
-internal class MemoryManager
+internal static class MemoryManager
 {
     private static readonly ThoughtDef prisonerWoohoo = DefDatabase<ThoughtDef>.GetNamed("PrisonerWoohoo");
 

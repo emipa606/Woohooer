@@ -3,7 +3,7 @@ using Verse;
 
 namespace DarkIntentionsWoohoo;
 
-internal class ChildrenCrossMod
+internal static class ChildrenCrossMod
 {
     private static readonly CslDelegate _method =
         AccessTools.MethodDelegate<CslDelegate>(AccessTools.Method("MorePawnUtil:Loved"));
